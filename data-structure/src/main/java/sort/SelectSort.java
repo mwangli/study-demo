@@ -22,6 +22,11 @@ public class SelectSort {
 //        System.out.println("结果：" + Arrays.toString(sort));
     }
 
+    /**
+     * 每一趟排序从未排序的列表中选择出最小的数字，交换到最前面的位置
+     * 共执行n-1趟排序，每趟排序执行1-(n-1)次比较，执行一次交换
+     * 80000随机数排序耗时：1931ms
+     */
     private static int[] sort(int[] arrays) {
         for (int i = 0; i < arrays.length - 1; i++) {
             int minIndex = i;

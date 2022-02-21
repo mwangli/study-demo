@@ -1,5 +1,6 @@
 package sort;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
@@ -21,6 +22,11 @@ public class BubbleSort {
 //        System.out.println("结果：" + Arrays.toString(sort));
     }
 
+    /**
+     * 每趟排序将两两相邻的位置比较并交换位置，直到将最大的数字交换到最后面
+     * 共执行n-1趟排序，每趟排序执行n-1次比较和交换
+     * 80000随机数排序耗时：8427ms
+     */
     private static int[] sort(int[] arrays) {
         for (int i = 0; i < arrays.length - 1; i++) {
             boolean f = false;
@@ -34,8 +40,6 @@ public class BubbleSort {
             }
             if (!f) {
                 break;
-            } else {
-                f = false;
             }
         }
         return arrays;

@@ -21,22 +21,26 @@ public class InsertSort {
         int[] sort = sort(ints);
         long end = new Date().getTime();
         System.out.println("耗时：" + (end - start));
-//        System.out.println("原始：" + Arrays.toString(ints));
 //        System.out.println("结果：" + Arrays.toString(sort));
     }
 
+    /**
+     * 从无序列表逐一将数字按照顺序插入到有序列表中的指定位置
+     * 值执行n-1趟排序，每趟排序执行n次比较，移动n次数据
+     * 80000随机数排序耗时：449ms
+     */
     private static int[] sort(int[] arrays) {
-        int[] ints = new int[arrays.length];
-        ints[0] = arrays[0];
         for (int i = 1; i < arrays.length; i++) {
             int insertNum = arrays[i];
             int j = i - 1;
-            while (j >= 0 && insertNum <= ints[j]) {
-                ints[j + 1] = ints[j];
+            while (j >= 0 && insertNum <= arrays[j]) {
+                arrays[j + 1] = arrays[j];
                 j--;
             }
-            ints[j + 1] = insertNum;
+            if (j < i + 1) {
+                arrays[j + 1] = insertNum;
+            }
         }
-        return ints;
+        return arrays;
     }
 }
