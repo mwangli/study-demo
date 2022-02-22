@@ -19,7 +19,7 @@ public class ShellSort {
             ints[i] = new Random().nextInt(80000);
         }
         long start = new Date().getTime();
-        int[] sort = sort2(ints);
+        int[] sort = sort(ints);
         long end = new Date().getTime();
         System.out.println("耗时：" + (end - start));
 //        System.out.println("结果：" + Arrays.toString(sort));
