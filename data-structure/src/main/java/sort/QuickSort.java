@@ -15,35 +15,39 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
-        int[] ints = {5,3,6,2,4,6,8,1,5};
+        int[] ints = new int[80000];
         for (int i = 0; i < ints.length; i++) {
-//            ints[i] = new Random().nextInt(80000);
+            ints[i] = new Random().nextInt(80000);
         }
         long start = new Date().getTime();
         sort(ints, 0, ints.length - 1);
         long end = new Date().getTime();
         System.out.println("耗时：" + (end - start));
-        System.out.println("结果：" + Arrays.toString(ints));
+//        System.out.println("结果：" + Arrays.toString(ints));
     }
 
-    private static void sort(int[] arrays, int left, int right) {
+    /**
+     *  先找到基准值，再按大小分成左右两边
+     *  递归处理，直至全列表有序
+     *  80000随机数排序耗时：16ms
+     */
+    private static void sort(int[] arr, int left, int right) {
         if (left >= right) return;
-        int key = arrays[left];
+        int key = arr[left];
         int l = left;
         int r = right;
         while (left < right) {
-            while (left < right && arrays[right] >= key) {
+            while (left < right && arr[right] >= key) {
                 right--;
             }
-            arrays[left] = arrays[right];
-            while (left < right && arrays[left] <= key) {
+            arr[left] = arr[right];
+            while (left < right && arr[left] <= key) {
                 left++;
             }
-            arrays[right] = arrays[left];
+            arr[right] = arr[left];
         }
-        arrays[left] = key;
-        sort(arrays, l, left - 1);
-        sort(arrays, right + 1, r);
+        arr[right] = key;
+        sort(arr, l, left - 1);
+        sort(arr, right + 1, r);
     }
-
 }
