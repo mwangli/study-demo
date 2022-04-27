@@ -62,3 +62,15 @@ select get_json_object(line, '$.common.ar'),
 from ods_logs
 where dt = '2022-04-26'
   and get_json_object(line, '$.actions') is not null;
+
+
+drop function if exists explode_json_array;
+create function explode_json_array
+as 'online.mwang.hive.udtf.ExplodeJSONArray'
+    using jar 'hdfs://mycluster/hive/warehouse/origin/jars/warehouse-udtf.jar';
+
+select explode_json_array(cast(get_json_object(line, '$.actions') as string))
+from ods_logs
+where dt = '2022-04-26'
+  and get_json_object(line, '$.actions') is not null;
+
