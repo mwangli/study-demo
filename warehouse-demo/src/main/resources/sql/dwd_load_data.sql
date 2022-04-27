@@ -371,7 +371,6 @@ from (
 --      on p.order_id = o.id;
 
 insert overwrite table dwd_payment_info partition (dt)
-
 select nvl(o.id, d.id),
        nvl(o.order_id, d.order_id),
        nvl(o.user_id, d.user_id),
