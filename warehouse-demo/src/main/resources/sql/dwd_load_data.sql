@@ -346,7 +346,7 @@ from (
 --        payment_status,
 --        create_time,
 --        callback_time,
---        nvl(date_format(create_time, 'yyyy-MM-dd'), '9999-99-99')
+--        nvl(date_format(callback_time, 'yyyy-MM-dd'), '9999-99-99')
 -- from (
 --          select id,
 --                 order_id,
@@ -745,3 +745,13 @@ from (
               on i.id = s.order_id
      ) o
      on d.id = o.id;
+
+show partitions dwd_order_info;
+show partitions dwd_refund_payment;
+show partitions dwd_payment_info;
+show partitions dwd_coupon_use;
+show partitions dwd_favor_info;
+show partitions dwd_cart_info;
+show partitions dwd_comment_info;
+show partitions dwd_order_detail;
+show partitions dwd_order_refund_info;
