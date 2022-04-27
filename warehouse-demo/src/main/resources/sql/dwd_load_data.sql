@@ -638,12 +638,15 @@ select nvl(o.id, d.id),
        nvl(o.original_total_amount, d.original_total_amount),
        nvl(o.total_amount, d.total_amount),
        case
-           when nvl(o.cancel_time, d.cancel_time) is not null then date_format(nvl(o.cancel_time, d.cancel_time), 'yyyy-MM-dd')
-           when  nvl(o.finish_time, d.finish_time) is not null and nvl(o.refund_time, d.refund_time) is null and
-                date_add(date_format( nvl(o.finish_time, d.finish_time), 'yyyy-MM-dd'), 7) <= '2022-04-26'
-               then date_add(date_format( nvl(o.finish_time, d.finish_time), 'yyyy-MM-dd'), 7)
-           when nvl(o.refund_finish_time, d.refund_finish_time) is not null then date_format(nvl(o.refund_finish_time, d.refund_finish_time), 'yyyy-MM-dd')
-           when nvl(o.expire_time, d.expire_time) is not null then date_format(nvl(o.expire_time, d.expire_time), 'yyyy-MM-dd')
+           when nvl(o.cancel_time, d.cancel_time) is not null
+               then date_format(nvl(o.cancel_time, d.cancel_time), 'yyyy-MM-dd')
+           when nvl(o.finish_time, d.finish_time) is not null and nvl(o.refund_time, d.refund_time) is null and
+                date_add(date_format(nvl(o.finish_time, d.finish_time), 'yyyy-MM-dd'), 7) <= '2022-04-26'
+               then date_add(date_format(nvl(o.finish_time, d.finish_time), 'yyyy-MM-dd'), 7)
+           when nvl(o.refund_finish_time, d.refund_finish_time) is not null then date_format(
+                   nvl(o.refund_finish_time, d.refund_finish_time), 'yyyy-MM-dd')
+           when nvl(o.expire_time, d.expire_time) is not null
+               then date_format(nvl(o.expire_time, d.expire_time), 'yyyy-MM-dd')
            else '9999-99-99'
            end
 from (
