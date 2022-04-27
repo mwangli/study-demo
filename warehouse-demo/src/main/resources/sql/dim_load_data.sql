@@ -66,7 +66,7 @@ with sku as (
          where dt = '2020-01-02'
          group by sku_id
      )
-insert overwrite table dim_sku_info partition(dt = '2020-01-02')
+insert overwrite table dim_sku_info partition (dt = '2020-01-02')
 select sku.id,
        sku.price,
        sku.sku_name,
@@ -94,7 +94,6 @@ from sku
          left join tm on sku.tm_id = tm.id
          left join attr on sku.id = attr.sku_id
          left join sale_attr on sku.id = sale_attr.sku_id;
-
 
 insert overwrite table dim_coupon_info partition (dt = '2020-01-02')
 select id,
@@ -140,7 +139,8 @@ select p.id,
        p.iso_3166_2,
        p.region_id,
        r.region_name
-from ods_base_province p left join ods_base_region r on p.region_id = r.id;
+from ods_base_province p
+         left join ods_base_region r on p.region_id = r.id;
 
 with tmp as (
     select old.id           old_id,
@@ -207,14 +207,14 @@ with tmp as (
                     gender,
                     create_time,
                     operate_time,
-                    '2020-01-02'     start_date,
-                    '9999-99-99'     end_date
+                    '2020-01-02'   start_date,
+                    '9999-99-99'   end_date
              from ods_user_info
              where dt = '2020-01-02'
          ) new
          on old.id = new.id
 )
-insert overwrite table dim_user_info partition (dt)
+insert overwrite table dim_user_info
 select nvl(new_id, old_id),
        nvl(new_login_name, old_login_name),
        nvl(new_nick_name, old_nick_name),
@@ -249,4 +249,6 @@ select old_id,
        old_start_date,
        cast(date_add('2020-01-02', 0) as string),
        cast(date_add('2020-01-02', 0) as string) dt
-from tmp where old_id is not null and new_id is not null;
+from tmp
+where old_id is not null
+  and new_id is not null;
