@@ -36,4 +36,4 @@ create table dws_user_action_daycount
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_user_action_daycount'
-    tblproperties ('parquet.compression' = 'lzo')
+    tblproperties ('parquet.compression' = 'lzo');
