@@ -30,7 +30,8 @@ create table dws_user_action_daycount
     appraise_mid_count     bigint comment '中评次数',
     appraise_bad_count     bigint comment '差评次数',
     appraise_default_count bigint comment '默认评价次数',
-    order_detail_status    array<struct<sku_id :string,sku_num :bigint, order_count :bigint,order_activity_amount
+    order_detail_status    array<struct<sku_id :string,sku_num :bigint, order_count :bigint, order_activity_amount
+                                        :decimal, order_coupon_amount :decimal,order_oroginal_amount :decimal,order_final_amount
                                         :decimal>> comment '订单明细'
 )
     partitioned by (dt string)
