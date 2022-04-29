@@ -9,7 +9,7 @@ create table dws_user_action_daycount
     cart_count             bigint comment '加购次数',
     favor_count            bigint comment '收藏次数',
     order_count            bigint comment '下单次数',
-    order_activity_account bigint comment '订单参数活动次数',
+    order_activity_count   bigint comment '订单参数活动次数',
     order_activity_amount  decimal comment '订单参与活动减免金额',
     order_coupon_count     bigint comment '订单用券次数',
     order_coupon_amount    decimal comment '订单用券金额',
@@ -17,7 +17,7 @@ create table dws_user_action_daycount
     order_final_amount     decimal comment '订单最终金额',
     payment_count          bigint comment '支付次数',
     payment_amount         decimal comment '支付金额',
-    refund_order_account   bigint comment '退单次数',
+    refund_order_count     bigint comment '退单次数',
     refund_order_num       bigint comment '退单件数',
     refund_order_amount    decimal comment '退单金额',
     refund_payment_count   bigint comment '退款次数',
@@ -31,8 +31,8 @@ create table dws_user_action_daycount
     appraise_bad_count     bigint comment '差评次数',
     appraise_default_count bigint comment '默认评价次数',
     order_detail_status    array<struct<sku_id :string,sku_num :bigint, order_count :bigint, order_activity_amount
-                                        :decimal, order_coupon_amount :decimal,order_oroginal_amount :decimal,order_final_amount
-                                        :decimal>> comment '订单明细'
+                                        :decimal(20), order_coupon_amount :decimal(20),order_original_amount :decimal(20),order_final_amount
+                                        :decimal(20)>> comment '订单明细'
 )
     partitioned by (dt string)
     stored as parquet
