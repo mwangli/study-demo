@@ -1,6 +1,6 @@
 use warehouse;
 set hive.exec.dynamic.partition.mode=nonstrict;
-set spark.executor.memory=4g;
+set spark.executor.memory=2g;
 set spark.yarn.executor.memoryOverhead=2048;
 
 with login_tmp as (
