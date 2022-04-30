@@ -66,7 +66,14 @@ with sku as (
          where dt = '2020-01-02'
          group by sku_id
      )
-insert overwrite table dim_sku_info partition (dt = '2020-01-02')
+insert
+overwrite
+table
+dim_sku_info
+partition
+(
+dt = '2020-01-02'
+)
 select sku.id,
        sku.price,
        sku.sku_name,
@@ -214,7 +221,10 @@ with tmp as (
          ) new
          on old.id = new.id
 )
-insert overwrite table dim_user_info
+insert
+overwrite
+table
+dim_user_info
 select nvl(new_id, old_id),
        nvl(new_login_name, old_login_name),
        nvl(new_nick_name, old_nick_name),
