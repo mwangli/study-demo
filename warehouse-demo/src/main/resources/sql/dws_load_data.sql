@@ -7,7 +7,7 @@ with login_tmp as (
     select user_id,
            count(1) login_count
     from dwd_page_log
-    where dt = '$date'
+    where dt = '2022-04-26'
       and user_id is not null
       and last_page_id is null
     group by user_id
@@ -17,7 +17,7 @@ with login_tmp as (
                 sum(if(action_id = 'cart_add', 1, 0))  cart_count,
                 sum(if(action_id = 'favor_add', 1, 0)) favor_count
          from dwd_action_log
-         where dt = '$date'
+         where dt = '2022-04-26'
            and user_id is not null
            and action_id in ('cart_add', 'favor_add')
          group by user_id
@@ -32,8 +32,8 @@ with login_tmp as (
                 sum(original_total_amount)                order_original_amount,
                 sum(total_amount)                         order_final_amount
          from dwd_order_info
-         where (dt = '$date' or dt = '9999-99-99')
-           and date_format(create_time, 'yyyy-MM-dd') = '$date'
+         where (dt = '2022-04-26' or dt = '9999-99-99')
+           and date_format(create_time, 'yyyy-MM-dd') = '2022-04-26'
          group by user_id
      ),
      payment_info_tmp as (
@@ -41,7 +41,7 @@ with login_tmp as (
                 count(1)          payment_count,
                 sum(total_amount) payment_amount
          from dwd_payment_info
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by user_id
      ),
      order_fefund_info_tmp as (
@@ -50,7 +50,7 @@ with login_tmp as (
                 sum(refund_num)    refund_order_num,
                 sum(refund_amount) refund_order_amount
          from dwd_order_refund_info
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by user_id
      ),
      payment_refund_info_tmp as (
@@ -64,7 +64,7 @@ with login_tmp as (
                          order_id,
                          sku_id
                   from dwd_refund_payment
-                  where dt = '$date'
+                  where dt = '2022-04-26'
               ) p
                   left join
               (
@@ -72,21 +72,21 @@ with login_tmp as (
                          order_id,
                          sku_id
                   from dwd_order_refund_info
-                  where dt >= date_add('$date', -15)
+                  where dt >= date_add('2022-04-26', -15)
               ) o
               on p.order_id = o.order_id and p.sku_id = o.sku_id
          group by user_id
      ),
      coupon_tmp as (
          select user_id,
-                sum(if(date_format(get_time, 'yyyy-MM-dd') = '$date', 1, 0))   coupon_get_count,
-                sum(if(date_format(using_time, 'yyyy-MM-dd') = '$date', 1, 0)) coupon_using_count,
-                sum(if(date_format(used_time, 'yyyy-MM-dd') = '$date', 1, 0))  coupon_used_count
+                sum(if(date_format(get_time, 'yyyy-MM-dd') = '2022-04-26', 1, 0))   coupon_get_count,
+                sum(if(date_format(using_time, 'yyyy-MM-dd') = '2022-04-26', 1, 0)) coupon_using_count,
+                sum(if(date_format(used_time, 'yyyy-MM-dd') = '2022-04-26', 1, 0))  coupon_used_count
          from dwd_coupon_use
-         where (dt = '$date' or dt = '9999-99-99')
-           and (date_format(get_time, 'yyyy-MM-dd') = '$date'
-             or date_format(using_time, 'yyyy-MM-dd') = '$date'
-             or date_format(used_time, 'yyyy-MM-dd') = '$date')
+         where (dt = '2022-04-26' or dt = '9999-99-99')
+           and (date_format(get_time, 'yyyy-MM-dd') = '2022-04-26'
+             or date_format(using_time, 'yyyy-MM-dd') = '2022-04-26'
+             or date_format(used_time, 'yyyy-MM-dd') = '2022-04-26')
          group by user_id
      ),
      comment_tmp as (
@@ -96,7 +96,7 @@ with login_tmp as (
                 sum(if(appraise = '1203', 1, 0)) appraise_bad_count,
                 sum(if(appraise = '1204', 1, 0)) appraise_default_count
          from dwd_comment_info
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by user_id
      ),
      order_detail_tmp as (
@@ -115,7 +115,7 @@ with login_tmp as (
                          sum(original_amount)       original_amount,
                          sum(split_total_amount)    split_total_amount
                   from dwd_order_detail
-                  where dt = '$date'
+                  where dt = '2022-04-26'
                   group by user_id, sku_id
               ) t
          group by user_id
@@ -126,7 +126,7 @@ table
 dws_user_action_daycount
 partition
 (
-dt = '$date'
+dt = '2022-04-26'
 )
 select coalesce(login_tmp.user_id, cart_favor_tmp.user_id, order_info_tmp.user_id,
                 payment_info_tmp.user_id, order_fefund_info_tmp.user_id,
@@ -188,7 +188,7 @@ from login_tmp
                                      payment_refund_info_tmp.user_id, coupon_tmp.user_id, comment_tmp.user_id) =
                             order_detail_tmp.user_id;
 
-insert overwrite table dws_visitor_action_daycount partition (dt = '$date')
+insert overwrite table dws_visitor_action_daycount partition (dt = '2022-04-26')
 select t1.mid_id,
        brand,
        model,
@@ -210,7 +210,7 @@ from (
                 collect_set(version_code)                              version_code,
                 count(1)                                               visit_count
          from dwd_page_log
-         where dt = '$date'
+         where dt = '2022-04-26'
            and last_page_id is null
          group by mid_id, brand, model
      ) t1
@@ -225,7 +225,7 @@ from (
                          count(1)         page_count,
                          sum(during_time) during_time
                   from dwd_page_log
-                  where dt = '$date'
+                  where dt = '2022-04-26'
                   group by mid_id, page_id
               ) t
          group by mid_id) t2
@@ -242,7 +242,7 @@ with order_tmp as (
            sum(original_amount)                     order_original_amount,
            sum(split_total_amount)                  order_final_amount
     from dwd_order_detail
-    where dt = '$date'
+    where dt = '2022-04-26'
     group by sku_id
 ),
      payment_tmp as (
@@ -256,7 +256,7 @@ with order_tmp as (
                          split_total_amount,
                          order_id
                   from dwd_order_detail
-                  where dt = '$date'
+                  where dt = '2022-04-26'
               ) t1
                   inner join
               (
@@ -274,7 +274,7 @@ with order_tmp as (
                 sum(refund_num)    refund_order_num,
                 sum(refund_amount) refund_order_amount
          from dwd_order_refund_info
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by sku_id
      ),
      refund_payment_tmp as (
@@ -288,7 +288,7 @@ with order_tmp as (
                          refund_num,
                          refund_amount
                   from dwd_order_refund_info
-                  where dt = '$date'
+                  where dt = '2022-04-26'
               ) t1
                   inner join
               (
@@ -304,7 +304,7 @@ with order_tmp as (
                 sum(if(action_id = 'cart_add', 1, 0))  cart_count,
                 sum(if(action_id = 'favor_add', 1, 0)) favor_count
          from dwd_action_log
-         where dt = '$date'
+         where dt = '2022-04-26'
            and action_id in ('cart_add', 'favor_add')
          group by action_item
      ),
@@ -315,7 +315,7 @@ with order_tmp as (
                 sum(if(appraise = '1203', 1, 0)) appraise_bad_count,
                 sum(if(appraise = '1204', 1, 0)) appraise_default_count
          from dwd_comment_info
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by sku_id
      )
 insert
@@ -324,7 +324,7 @@ table
 dws_sku_action_daycount
 partition
 (
-dt = '$date'
+dt = '2022-04-26'
 )
 select coalesce(order_tmp.sku_id, payment_tmp.sku_id, refund_order_tmp.sku_id, refund_payment_tmp.sku_id,
                 action_tmp.sku_id, comment_tmp.sku_id),
@@ -362,7 +362,7 @@ from order_tmp
                                                  refund_payment_tmp.sku_id, action_tmp.sku_id) = comment_tmp.sku_id;
 
 
-insert overwrite table dws_coupon_info_daycount partition (dt = '$date')
+insert overwrite table dws_coupon_info_daycount partition (dt = '2022-04-26')
 select t1.coupon_id,
        get_count,
        expire_count,
@@ -376,10 +376,10 @@ select t1.coupon_id,
        payment_final_amount
 from (
          select coupon_id,
-                sum(if(date_format(get_time, 'yyyy-MM-dd') = '$date', 1, 0))    get_count,
-                sum(if(date_format(expire_time, 'yyyy-MM-dd') = '$date', 1, 0)) expire_count
+                sum(if(date_format(get_time, 'yyyy-MM-dd') = '2022-04-26', 1, 0))    get_count,
+                sum(if(date_format(expire_time, 'yyyy-MM-dd') = '2022-04-26', 1, 0)) expire_count
          from dwd_coupon_use
-         where dt = '$date'
+         where dt = '2022-04-26'
          group by coupon_id
      ) t1
          left join
@@ -414,7 +414,7 @@ from (
      on t1.coupon_id = t3.coupon_id;
 
 
-insert overwrite table dws_activity_info_daycount partition (dt = '$date')
+insert overwrite table dws_activity_info_daycount partition (dt = '2022-04-26')
 select t1.activity_rule_id,
        t1.activity_id,
        order_count,
@@ -433,7 +433,7 @@ from (
                 sum(original_amount)       order_original_amount,
                 sum(split_total_amount)    order_final_amount
          from dwd_order_detail
-         where dt = '$date'
+         where dt = '2022-04-26'
            and split_activity_amount > 0
          group by activity_rule_id, activity_id
      ) t1
@@ -453,7 +453,7 @@ from (
                          original_amount,
                          split_total_amount
                   from dwd_order_detail
-                  where dt = '$date'
+                  where dt = '2022-04-26'
                     and split_activity_amount > 0
               ) o
                   inner join
@@ -468,7 +468,7 @@ from (
      ) t2
      on t1.activity_rule_id = t2.activity_rule_id;
 
-insert overwrite table dws_area_info_daycount partition (dt = '$date')
+insert overwrite table dws_area_info_daycount partition (dt = '2022-04-26')
 select t1.area_code,
        visit_count,
        login_count,
@@ -489,7 +489,7 @@ from (
                 sum(distinct mid_id)               visitor_count,
                 sum(distinct user_id)              user_count
          from dwd_page_log
-         where dt = '$date'
+         where dt = '2022-04-26'
            and last_page_id is null
          group by area_code
      ) t1
@@ -536,7 +536,7 @@ from (
                             on dwd_refund_payment.province_id = dim_base_province.id
          group by area_code
      ) t5
-     on t1.area_code = t5.area_code;
+     on t1.area_code = t5.area_code
 
 
 
