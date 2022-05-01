@@ -250,22 +250,9 @@ with order_tmp as (
                 count(1)                payment_count,
                 sum(sku_num)            payment_num,
                 sum(split_total_amount) payment_amount
-         from (
-                  select sku_id,
-                         sku_num,
-                         split_total_amount,
-                         order_id
-                  from dwd_order_detail
-                  where dt = '2022-04-26'
-              ) t1
-                  inner join
-              (
-                  select order_id,
-                         callback_time
-                  from dwd_payment_info
-                  where callback_time is not null
-              ) t2
-              on t1.order_id = t2.order_id
+         from dwd_order_detail
+         where dt = '2022-04-26'
+           and order_id in (select order_id from dwd_payment_info where callback_time is not null)
          group by sku_id
      ),
      refund_order_tmp as (
@@ -282,21 +269,9 @@ with order_tmp as (
                 count(1)           refund_payment_count,
                 sum(refund_num)    refund_payment_num,
                 sum(refund_amount) refund_payment_amount
-         from (
-                  select sku_id,
-                         order_id,
-                         refund_num,
-                         refund_amount
-                  from dwd_order_refund_info
-                  where dt = '2022-04-26'
-              ) t1
-                  inner join
-              (
-                  select order_id, callback_time
-                  from dwd_refund_payment
-                  where callback_time is not null
-              ) t2
-              on t1.order_id = t2.order_id
+         from dwd_order_refund_info
+         where dt = '2022-04-26'
+           and order_id in (select order_id from dwd_payment_info where callback_time is not null)
          group by sku_id
      ),
      action_tmp as (
@@ -401,14 +376,7 @@ from (
                 sum(original_amount)     payment_original_amount,
                 sum(split_total_amount)  payment_final_amount
          from dwd_order_detail
-                  inner join
-              (
-                  select order_id,
-                         callback_time
-                  from dwd_payment_info
-                  where callback_time is not null
-              ) p
-              on dwd_order_detail.order_id = p.order_id
+         where order_id in (select order_id from dwd_payment_info where callback_time is not null)
          group by coupon_id
      ) t3
      on t1.coupon_id = t3.coupon_id;
@@ -445,25 +413,10 @@ from (
                 sum(split_activity_amount) payment_reduce_amount,
                 sum(original_amount)       payment_original_amount,
                 sum(split_total_amount)    payment_final_amount
-         from (
-                  select activity_rule_id,
-                         activity_id,
-                         order_id,
-                         split_activity_amount,
-                         original_amount,
-                         split_total_amount
-                  from dwd_order_detail
-                  where dt = '2022-04-26'
-                    and split_activity_amount > 0
-              ) o
-                  inner join
-              (
-                  select order_id,
-                         callback_time
-                  from dwd_payment_info
-                  where callback_time is not null
-              ) p
-              on o.order_id = p.order_id
+         from dwd_order_detail
+         where dt = '2022-04-26'
+           and split_activity_amount > 0
+           and order_id in (select order_id from dwd_payment_info where callback_time is not null)
          group by activity_rule_id, activity_id
      ) t2
      on t1.activity_rule_id = t2.activity_rule_id;

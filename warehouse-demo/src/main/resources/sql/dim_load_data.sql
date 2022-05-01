@@ -122,21 +122,42 @@ select id,
 from ods_coupon_info
 where dt = '2020-01-02';
 
-insert overwrite table dim_activity_rule_info partition (dt = '2020-01-02')
+insert overwrite table dim_activity_rule_info partition (dt = '2022-04-26')
 select r.id,
        i.id,
-       i.activity_name,
-       i.activity_type,
-       i.start_time,
-       i.end_time,
-       i.create_time,
-       r.condition_amount,
-       r.condition_num,
-       r.benefit_amount,
-       r.benefit_discount,
-       r.benefit_level
-from ods_activity_rule r
-         left join ods_activity_info i on r.activity_id = i.id;
+       activity_name,
+       activity_type,
+       start_time,
+       end_time,
+       create_time,
+       condition_amount,
+       condition_num,
+       benefit_amount,
+       benefit_discount,
+       benefit_level
+from (
+         select id,
+                activity_id,
+                condition_amount,
+                condition_num,
+                benefit_amount,
+                benefit_discount,
+                benefit_level
+         from ods_activity_rule
+         where dt = '2022-04-26'
+     ) r
+         left join
+     (
+         select id,
+                activity_name,
+                activity_type,
+                start_time,
+                end_time,
+                create_time
+         from ods_activity_info
+         where dt = '2022-04-26'
+     ) i
+     on r.activity_id = i.id;
 
 insert overwrite table dim_base_province
 select p.id,
