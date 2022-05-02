@@ -235,10 +235,10 @@ with tmp as (
                     gender,
                     create_time,
                     operate_time,
-                    '2020-01-02'   start_date,
+                    '2022-04-26'   start_date,
                     '9999-99-99'   end_date
              from ods_user_info
-             where dt = '2020-01-02'
+             where dt = '2022-04-26'
          ) new
          on old.id = new.id
 )
@@ -282,8 +282,8 @@ select old_id,
        old_create_time,
        old_operate_time,
        old_start_date,
-       cast(date_add('2020-01-02', 0) as string),
-       cast(date_add('2020-01-02', 0) as string) dt
+       cast(date_add('2022-04-26', 0) as string),
+       cast(date_add('2022-04-26', 0) as string) dt
 from tmp
 where old_id is not null
   and new_id is not null;
