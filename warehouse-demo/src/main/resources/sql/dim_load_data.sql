@@ -246,6 +246,10 @@ insert
 overwrite
 table
 dim_user_info
+partition
+(
+dt
+)
 select nvl(new_id, old_id),
        nvl(new_login_name, old_login_name),
        nvl(new_nick_name, old_nick_name),
