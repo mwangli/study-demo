@@ -44,7 +44,6 @@ from (
      ) a
 group by channel, is_new, recent_days;
 
-
 insert overwrite table ads_page_path
 select *
 from ads_page_path
@@ -145,31 +144,41 @@ from (
      ) t2
      on t1.recent_days = t2.recent_days;
 
-select count(1)
-from dws_user_action_daycount
-where dt = '2022-04-26';
-
 insert overwrite table ads_user_retention
 select *
 from ads_user_retention
 union
-select '2022-04-26',
-       date_format(create_time, 'yyyy-MM-dd')                                             create_date,
-       datediff('2022-04-26', date_format(create_time, 'yyyy-MM-dd'))                     retention_days,
-       (select count(1) from dws_user_action_daycount where dt = '2022-04-26')            retention_ccount,
-       count(1)                                                                           new_user_count,
-       (select count(1) from dws_user_action_daycount where dt = '2022-04-26') / count(1) retntion_rate
-from ods_user_info
-where create_time >= date_add('2022-04-26', -7)
---   and create_time < '2022-04-26'
-group by date_format(create_time, 'yyyy-MM-dd');
+select t1.date_id,
+       create_date,
+       retention_days,
+       retention_count,
+       new_user_count,
+       retention_count / new_user_count
+from (
+         select '2022-04-30'                                                   date_id,
+                date_format(create_time, 'yyyy-MM-dd')                         create_date,
+                datediff('2022-04-30', date_format(create_time, 'yyyy-MM-dd')) retention_days,
+                count(1)                                                       new_user_count
+         from ods_user_info
+         where create_time >= date_add('2022-04-30', -7)
+           and create_time < '2022-04-30'
+         group by date_format(create_time, 'yyyy-MM-dd')
+     ) t1
+         left join
+     (
+         select '2022-04-30' date_id,
+                count(1)     retention_count
+         from dws_user_action_daycount
+         where dt = '2022-04-30'
+     ) t2
+     on t1.date_id = t2.date_id;
 
 insert overwrite table ads_order_spu_stats
 select *
 from ads_order_spu_stats
 union
 select '2022-04-26',
-       '1',
+       1,
        spu_id,
        spu_name,
        tm_id,
@@ -188,7 +197,7 @@ group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, categor
          category1_name
 union
 select '2022-04-26',
-       '7',
+       7,
        spu_id,
        spu_name,
        tm_id,
@@ -207,7 +216,7 @@ group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, categor
          category1_name
 union
 select '2022-04-26',
-       '30',
+       30,
        spu_id,
        spu_name,
        tm_id,

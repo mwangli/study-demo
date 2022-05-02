@@ -65,7 +65,7 @@ create table ads_user_retention
 (
     date_id         string comment '统计日期',
     crate_date      string comment '用户新增日期',
-    retention_day   string comment '留存天数',
+    retention_day   bigint comment '留存天数',
     retention_count bigint comment '留存用户数量',
     new_user_count  bigint comment '新增用户数量',
     retention_rate  decimal comment '留存率'
@@ -79,15 +79,15 @@ create table ads_order_spu_stats
 (
     date_id        string comment '统计日期',
     recent_days    bigint comment '统计天数：1天,7天,30天',
-    spu_id         string comment '商品id',
+    spu_id         bigint comment '商品id',
     spu_name       string comment '商品名称',
-    tm_id          string comment '品牌id',
+    tm_id          bigint comment '品牌id',
     tm_name        string comment '品牌名称',
-    category3_id   string comment '三级品类id',
+    category3_id   bigint comment '三级品类id',
     category3_name string comment '三级品类名称',
-    category2_id   string comment '二级品类id',
+    category2_id   bigint comment '二级品类id',
     category2_name string comment '二级品类名称',
-    category1_id   string comment '一级品类id',
+    category1_id   bigint comment '一级品类id',
     category1_name string comment '一级品类名称',
     order_count    bigint comment '订单数量',
     order_amount   decimal comment '订单金额'
@@ -101,7 +101,7 @@ create table ads_repeat_purchase
 (
     date_id              string comment '统计日期',
     recent_days          bigint comment '统计天数：1天,7天,30天',
-    tm_id                string comment '品牌id',
+    tm_id                bigint comment '品牌id',
     tm_name              string comment '品牌名称',
     repeat_purchase_rate decimal comment '复购率'
 )
@@ -131,8 +131,8 @@ create table ads_coupon_stats
     coupon_name           string comment '优惠券名称',
     start_date            string comment '发布日期',
     rule_name             string comment '优惠规则',
-    get_count             string comment '领取次数',
-    order_count           string comment '下单次数',
+    get_count             bigint comment '领取次数',
+    order_count           bigint comment '下单次数',
     expire_count          bigint comment '过期次数',
     order_original_amount decimal comment '订单原始金额',
     order_final_amount    decimal comment '订单最金额',
@@ -151,7 +151,7 @@ create table ads_activity_stats
     activity_id           string comment '活动id',
     activity_name         string comment '活动名称',
     start_date            string comment '活动开始日期',
-    order_count           string comment '下单次数',
+    order_count           bigint comment '下单次数',
     order_original_amount decimal comment '订单原始金额',
     order_final_amount    decimal comment '订单最金额',
     reduce_amount         decimal comment '优惠金额',
