@@ -65,8 +65,8 @@ select user_id,
        sum(appraise_default_count),
        collect_list(order_detail_status)
 from dws_user_action_daycount
-where dt <= '2022-04-30'
-  and dt >= date_add('2022-04-30', -29)
+where dt <= '2022-04-26'
+  and dt >= date_add('2022-04-26', -29)
 group by user_id;
 
 insert overwrite table dwt_visitor_action_7daycount partition (dt = '2022-04-26')

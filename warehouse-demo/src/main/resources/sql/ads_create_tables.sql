@@ -18,7 +18,7 @@ create table ads_visit_stats
     bounce_rate      bigint comment '跳出率'
 )
     row format delimited fields terminated by '\t'
-    location '/hive/warehouse/ads/ads_visit_stat';
+    location '/hive/warehouse/ads/ads_visit_stats';
 
 --ads_page_path 路径分析
 drop table if exists ads_page_path;
