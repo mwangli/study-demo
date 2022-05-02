@@ -25,7 +25,7 @@ drop table if exists ads_page_path;
 create table ads_page_path
 (
     date_id     string comment '统计日期',
-    recent_days string comment '最近天数:1天,7天,30天',
+    recent_days bigint comment '最近天数:1天,7天,30天',
     source      string comment '跳转起始页面',
     target      string comment '跳转目标页面',
     path_count  bigint comment '跳转次数'
@@ -49,7 +49,7 @@ drop table if exists ads_user_action;
 create table ads_user_action
 (
     date_id           string comment '统计日期',
-    recent_days       string comment '统计天数：1天,7天,30天',
+    recent_days       bigint comment '统计天数：1天,7天,30天',
     home_count        bigint comment '首页浏览人数',
     good_detail_count bigint comment '商品详情页浏览人数',
     car_count         bigint comment '加购人数',
@@ -78,7 +78,7 @@ drop table if exists ads_order_spu_stats;
 create table ads_order_spu_stats
 (
     date_id        string comment '统计日期',
-    recent_days    string comment '统计天数：1天,7天,30天',
+    recent_days    bigint comment '统计天数：1天,7天,30天',
     spu_id         string comment '商品id',
     spu_name       string comment '商品名称',
     tm_id          string comment '品牌id',
@@ -100,7 +100,7 @@ drop table if exists ads_repeat_purchase;
 create table ads_repeat_purchase
 (
     date_id              string comment '统计日期',
-    recent_days          string comment '统计天数：1天,7天,30天',
+    recent_days          bigint comment '统计天数：1天,7天,30天',
     tm_id                string comment '品牌id',
     tm_name              string comment '品牌名称',
     repeat_purchase_rate decimal comment '复购率'
@@ -113,8 +113,7 @@ drop table if exists ads_order_stats;
 create table ads_order_stats
 (
     date_id          string comment '统计日期',
-    recent_days      string comment '统计天数：1天,7天,30天',
-
+    recent_days      bigint comment '统计天数：1天,7天,30天',
     order_user_count bigint comment '下单人数',
     order_count      bigint comment '订单数量',
     order_amount     decimal comment '订单金额'
@@ -127,7 +126,7 @@ drop table if exists ads_coupon_stats;
 create table ads_coupon_stats
 (
     date_id               string comment '统计日期',
-    recent_days           string comment '统计天数：1天,7天,30天',
+    recent_days           bigint comment '统计天数：1天,7天,30天',
     coupon_id             string comment '优惠券id',
     coupon_name           string comment '优惠券名称',
     start_date            string comment '发布日期',
@@ -148,7 +147,7 @@ drop table if exists ads_activity_stats;
 create table ads_activity_stats
 (
     date_id               string comment '统计日期',
-    recent_days           string comment '统计天数：1天,7天,30天',
+    recent_days           bigint comment '统计天数：1天,7天,30天',
     activity_id           string comment '活动id',
     activity_name         string comment '活动名称',
     start_date            string comment '活动开始日期',
