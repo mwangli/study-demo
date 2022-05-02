@@ -46,6 +46,9 @@ group by channel, is_new, recent_days;
 
 
 insert overwrite table ads_page_path
+select *
+from ads_page_path
+union
 select '2022-04-26',
        recent_days,
        source,
@@ -75,6 +78,9 @@ from (
 group by source, target, recent_days;
 
 insert overwrite table ads_user_change
+select *
+from ads_user_change
+union
 select '2022-04-26',
        (
            select count(id)
@@ -107,6 +113,9 @@ select '2022-04-26',
        );
 
 insert overwrite table ads_user_action
+select *
+from ads_user_action
+union
 select '2022-04-26',
        t1.recent_days,
        home_count,
@@ -141,6 +150,9 @@ from dws_user_action_daycount
 where dt = '2022-04-26';
 
 insert overwrite table ads_user_retention
+select *
+from ads_user_retention
+union
 select '2022-04-26',
        date_format(create_time, 'yyyy-MM-dd')                                             create_date,
        datediff('2022-04-26', date_format(create_time, 'yyyy-MM-dd'))                     retention_days,
@@ -153,6 +165,9 @@ where create_time >= date_add('2022-04-26', -7)
 group by date_format(create_time, 'yyyy-MM-dd');
 
 insert overwrite table ads_order_spu_stats
+select *
+from ads_order_spu_stats
+union
 select '2022-04-26',
        '1',
        spu_id,
@@ -212,6 +227,9 @@ group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, categor
 
 
 insert overwrite table ads_repeat_purchase
+select *
+from ads_repeat_purchase
+union
 select '2022-04-26',
        recent_days,
        tm_id,
@@ -238,6 +256,9 @@ group by tm_id, tm_name, recent_days;
 
 
 insert overwrite table ads_order_stats
+select *
+from ads_order_stats
+union
 select '2022-04-26',
        recent_days,
        count(user_id),
@@ -248,6 +269,9 @@ where dt >= date_add('2022-04-26', -recent_days + 1)
 group by recent_days;
 
 insert overwrite table ads_coupon_stats
+select *
+from ads_coupon_stats
+union
 select '2022-04-26',
        recent_days,
        coupon_id,
@@ -293,6 +317,9 @@ group by coupon_id, coupon_name, start_date, rule_name, recent_days;
 
 
 insert overwrite table ads_activity_stats
+select *
+from ads_activity_stats
+union
 select '2022-04-26',
        recent_days,
        t1.activity_id,

@@ -1,0 +1,56 @@
+nodes:
+  - name: mock-log-data
+    type: command
+    config:
+      command: /root/warehouse/origin/log-data/mock-log-data.sh
+  - name: mock-sql-data
+    type: command
+    config:
+      command: /root/warehouse/origin/sql-data/mock-sql-data.sh
+  - name: mysql-hdfs
+    type: command
+    dependsOn:
+      - mock-sql-data
+    config:
+      command: /root/warehouse/origin/sql-data/mysql-hdfs.sh
+  - name: ods_load_data
+    type: command
+    dependsOn:
+      - mock-log-data
+      - mysql-hdfs
+    config:
+      command: /root/warehouse/ods/ods_load_data.sh
+  - name: dim_load_data
+    type: command
+    dependsOn:
+      - ods_load_data
+    config:
+      command: /root/warehouse/dim/dim_load_data.sh
+  - name: dwd_load_data
+    type: command
+    dependsOn:
+      - ods-load-data
+    config:
+      command: /root/warehouse/dwd/dwd_load_data.sh
+  - name: dws_load_data
+    type: command
+    dependsOn:
+      - dwd-load-data
+      - dim-load-data
+    config:
+      command: /root/warehouse/dws/dws_load_data.sh
+  - name: dwt_load_data
+    type: command
+    dependsOn:
+      - dws-load-data
+    config:
+      command: /root/warehouse/dwt/dwt_load_data.sh
+  - name: ads_load_data
+    type: command
+    dependsOn:
+      - dwt-load-data
+    config:
+      command: /root/warehouse/ads/ads_load_data.sh
+
+
+      ykkwohrqgvzifedc
