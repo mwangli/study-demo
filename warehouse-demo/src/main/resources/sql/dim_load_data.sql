@@ -66,14 +66,14 @@ with sku as (
          where dt = '2020-01-02'
          group by sku_id
      )
-insert
-overwrite
-table
-dim_sku_info
-partition
-(
-dt = '2020-01-02'
-)
+-- insert
+-- overwrite
+-- table
+-- dim_sku_info
+-- partition
+-- (
+-- dt = '2022-04-26'
+-- )
 select sku.id,
        sku.price,
        sku.sku_name,

@@ -293,14 +293,14 @@ with order_tmp as (
          where dt = '2022-04-26'
          group by sku_id
      )
-insert
-overwrite
-table
-dws_sku_action_daycount
-partition
-(
-dt = '2022-04-26'
-)
+-- insert
+-- overwrite
+-- table
+-- dws_sku_action_daycount
+-- partition
+-- (
+-- dt = '2022-04-26'
+-- )
 select coalesce(order_tmp.sku_id, payment_tmp.sku_id, refund_order_tmp.sku_id, refund_payment_tmp.sku_id,
                 action_tmp.sku_id, comment_tmp.sku_id),
        order_count,
