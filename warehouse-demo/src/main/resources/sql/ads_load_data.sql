@@ -51,8 +51,8 @@ from ads_page_path
 union
 select '2022-04-26',
        recent_days,
-       source,
-       target,
+       nvl(source,''),
+       nvl(target,''),
        count(1) page_count,
        date('2022-04-26')
 from (
