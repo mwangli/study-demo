@@ -18,7 +18,8 @@ select '2022-04-26',
        avg(page_count),
        count(1),
        sum(if(page_count = 1, 1, 0)),
-       sum(if(page_count = 1, 1, 0)) / count(1)
+       sum(if(page_count = 1, 1, 0)) / count(1),
+       date('2022-04-26')
 from (
          select channel,
                 is_new,
@@ -52,7 +53,8 @@ select '2022-04-26',
        recent_days,
        source,
        target,
-       count(1) page_count
+       count(1) page_count,
+       date('2022-04-26')
 from (
          select concat('step', rn, ':', page_id)          source,
                 concat('step', rn + 1, ':', next_page_id) target,
@@ -109,7 +111,8 @@ select '2022-04-26',
                                  and login_count > 0
                            )
                  )
-       );
+       ),
+       date('2022-04-26');
 
 insert overwrite table ads_user_action
 select *
@@ -121,7 +124,8 @@ select '2022-04-26',
        good_detail_count,
        user_cart_count,
        user_order_count,
-       user_payment_count
+       user_payment_count,
+       date('2022-04-26')
 from (
          select recent_days,
                 sum(if(page_id = 'home', 1, 0))        home_count,
@@ -153,7 +157,8 @@ select t1.date_id,
        retention_days,
        retention_count,
        new_user_count,
-       retention_count / new_user_count
+       retention_count / new_user_count,
+       date('2022-04-26')
 from (
          select '2022-04-30'                                                   date_id,
                 date_format(create_time, 'yyyy-MM-dd')                         create_date,
@@ -190,7 +195,8 @@ select '2022-04-26',
        category1_id,
        category1_name,
        sum(order_count),
-       sum(order_final_amount)
+       sum(order_final_amount),
+       date('2022-04-26')
 from dws_sku_action_daycount
          left join dim_sku_info on dws_sku_action_daycount.sku_id = dim_sku_info.id
 group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, category2_id, category2_name, category1_id,
@@ -209,7 +215,8 @@ select '2022-04-26',
        category1_id,
        category1_name,
        sum(order_count),
-       sum(order_final_amount)
+       sum(order_final_amount),
+       date('2022-04-26')
 from dwt_sku_action_7daycount
          left join dim_sku_info on dwt_sku_action_7daycount.sku_id = dim_sku_info.id
 group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, category2_id, category2_name, category1_id,
@@ -228,7 +235,8 @@ select '2022-04-26',
        category1_id,
        category1_name,
        sum(order_count),
-       sum(order_final_amount)
+       sum(order_final_amount),
+       date('2022-04-26')
 from dwt_sku_action_30daycount
          left join dim_sku_info on dwt_sku_action_30daycount.sku_id = dim_sku_info.id
 group by spu_id, spu_name, tm_id, tm_name, category3_id, category3_name, category2_id, category2_name, category1_id,
@@ -243,7 +251,8 @@ select '2022-04-26',
        recent_days,
        tm_id,
        tm_name,
-       sum(if(payment_count > 1, 1, 0)) / sum(if(payment_count >= 1, 1, 0))
+       sum(if(payment_count > 1, 1, 0)) / sum(if(payment_count >= 1, 1, 0)),
+       date('2022-04-26')
 from (
          select recent_days,
                 tm_id,
@@ -272,7 +281,8 @@ select '2022-04-26',
        recent_days,
        count(user_id),
        sum(order_count),
-       sum(order_final_amount)
+       sum(order_final_amount),
+       date('2022-04-26')
 from dws_user_action_daycount lateral view explode(array(1, 7, 30)) tmp as recent_days
 where dt >= date_add('2022-04-26', -recent_days + 1)
 group by recent_days;
@@ -293,7 +303,8 @@ select '2022-04-26',
        sum(order_original_amount),
        sum(order_final_amount),
        sum(order_reduce_amount),
-       sum(order_reduce_amount) / sum(order_final_amount)
+       sum(order_reduce_amount) / sum(order_final_amount),
+       date('2022-04-26')
 from (
          select recent_days,
                 coupon_id,
@@ -338,7 +349,8 @@ select '2022-04-26',
        order_original_amount,
        order_final_amount,
        reduce_amount,
-       reduce_amount / order_final_amount
+       reduce_amount / order_final_amount,
+       date('2022-04-26')
 from (
          select recent_days,
                 activity_id,
@@ -359,14 +371,3 @@ from (
          where dt = '2022-04-26'
      ) t2
      on t1.activity_id = t2.id;
-
-
-
-
-
-
-
-
-
-
-

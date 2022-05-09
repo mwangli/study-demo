@@ -15,7 +15,8 @@ create table ads_visit_stats
     avg_page_count   bigint comment '一次会话页面平均浏览数',
     session_count    bigint comment '会话次数',
     bounce_count     bigint comment '跳出次数',
-    bounce_rate      bigint comment '跳出率'
+    bounce_rate      bigint comment '跳出率',
+    update_time      timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_visit_stats';
@@ -28,7 +29,8 @@ create table ads_page_path
     recent_days bigint comment '最近天数:1天,7天,30天',
     source      string comment '跳转起始页面',
     target      string comment '跳转目标页面',
-    path_count  bigint comment '跳转次数'
+    path_count  bigint comment '跳转次数',
+    update_time timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_page_path';
@@ -39,7 +41,8 @@ create table ads_user_change
 (
     date_id          string comment '统计日期',
     user_churn_count bigint comment '流失用户数',
-    user_back_count  bigint comment '回流用户数'
+    user_back_count  bigint comment '回流用户数',
+    update_time      timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_change';
@@ -54,7 +57,8 @@ create table ads_user_action
     good_detail_count bigint comment '商品详情页浏览人数',
     car_count         bigint comment '加购人数',
     order_count       bigint comment '下单人数',
-    payment_count     bigint comment '支付人数'
+    payment_count     bigint comment '支付人数',
+    update_time       timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_action';
@@ -68,7 +72,8 @@ create table ads_user_retention
     retention_day   bigint comment '留存天数',
     retention_count bigint comment '留存用户数量',
     new_user_count  bigint comment '新增用户数量',
-    retention_rate  decimal comment '留存率'
+    retention_rate  decimal comment '留存率',
+    update_time     timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_retention';
@@ -90,7 +95,8 @@ create table ads_order_spu_stats
     category1_id   bigint comment '一级品类id',
     category1_name string comment '一级品类名称',
     order_count    bigint comment '订单数量',
-    order_amount   decimal comment '订单金额'
+    order_amount   decimal comment '订单金额',
+    update_time    timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_order_spu_stats';
@@ -103,7 +109,8 @@ create table ads_repeat_purchase
     recent_days          bigint comment '统计天数：1天,7天,30天',
     tm_id                bigint comment '品牌id',
     tm_name              string comment '品牌名称',
-    repeat_purchase_rate decimal comment '复购率'
+    repeat_purchase_rate decimal comment '复购率',
+    update_time          timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_repeat_purchase';
@@ -116,7 +123,8 @@ create table ads_order_stats
     recent_days      bigint comment '统计天数：1天,7天,30天',
     order_user_count bigint comment '下单人数',
     order_count      bigint comment '订单数量',
-    order_amount     decimal comment '订单金额'
+    order_amount     decimal comment '订单金额',
+    update_time      timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_order_stats';
@@ -137,7 +145,8 @@ create table ads_coupon_stats
     order_original_amount decimal comment '订单原始金额',
     order_final_amount    decimal comment '订单最金额',
     reduce_amount         decimal comment '优惠金额',
-    reduce_rate           decimal comment '补贴率'
+    reduce_rate           decimal comment '补贴率',
+    update_time           timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_coupon_stats';
@@ -155,7 +164,8 @@ create table ads_activity_stats
     order_original_amount decimal comment '订单原始金额',
     order_final_amount    decimal comment '订单最金额',
     reduce_amount         decimal comment '优惠金额',
-    reduce_rate           decimal comment '补贴率'
+    reduce_rate           decimal comment '补贴率',
+    update_time           timestamp comment '数据更新时间'
 )
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_activity_stats';
