@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.mwang.mockdata.mapper.CouponUseMapper">
+  <resultMap id="BaseResultMap" type="online.mwang.mockdata.bean.CouponUse">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="coupon_status" jdbcType="VARCHAR" property="couponStatus" />
+    <result column="get_time" jdbcType="TIMESTAMP" property="getTime" />
+    <result column="using_time" jdbcType="TIMESTAMP" property="usingTime" />
+    <result column="used_time" jdbcType="TIMESTAMP" property="usedTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coupon_id, user_id, order_id, coupon_status, get_time, using_time, used_time, 
+    expire_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_use
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_use
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="online.mwang.mockdata.bean.CouponUse" useGeneratedKeys="true">
+    insert into coupon_use (coupon_id, user_id, order_id, 
+      coupon_status, get_time, using_time, 
+      used_time, expire_time)
+    values (#{couponId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, 
+      #{couponStatus,jdbcType=VARCHAR}, #{getTime,jdbcType=TIMESTAMP}, #{usingTime,jdbcType=TIMESTAMP}, 
+      #{usedTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="online.mwang.mockdata.bean.CouponUse" useGeneratedKeys="true">
+    insert into coupon_use
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="couponStatus != null">
+        coupon_status,
+      </if>
+      <if test="getTime != null">
+        get_time,
+      </if>
+      <if test="usingTime != null">
+        using_time,
+      </if>
+      <if test="usedTime != null">
+        used_time,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="couponStatus != null">
+        #{couponStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null">
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usingTime != null">
+        #{usingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null">
+        #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.mwang.mockdata.bean.CouponUse">
+    update coupon_use
+    <set>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="couponStatus != null">
+        coupon_status = #{couponStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null">
+        get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usingTime != null">
+        using_time = #{usingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usedTime != null">
+        used_time = #{usedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.mwang.mockdata.bean.CouponUse">
+    update coupon_use
+    set coupon_id = #{couponId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=BIGINT},
+      coupon_status = #{couponStatus,jdbcType=VARCHAR},
+      get_time = #{getTime,jdbcType=TIMESTAMP},
+      using_time = #{usingTime,jdbcType=TIMESTAMP},
+      used_time = #{usedTime,jdbcType=TIMESTAMP},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

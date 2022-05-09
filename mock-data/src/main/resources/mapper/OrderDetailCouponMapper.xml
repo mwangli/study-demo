@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.mwang.mockdata.mapper.OrderDetailCouponMapper">
+  <resultMap id="BaseResultMap" type="online.mwang.mockdata.bean.OrderDetailCoupon">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_detail_id" jdbcType="BIGINT" property="orderDetailId" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="coupon_use_id" jdbcType="BIGINT" property="couponUseId" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, order_detail_id, coupon_id, coupon_use_id, sku_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail_coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_detail_coupon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="online.mwang.mockdata.bean.OrderDetailCoupon" useGeneratedKeys="true">
+    insert into order_detail_coupon (order_id, order_detail_id, coupon_id, 
+      coupon_use_id, sku_id, create_time
+      )
+    values (#{orderId,jdbcType=BIGINT}, #{orderDetailId,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, 
+      #{couponUseId,jdbcType=BIGINT}, #{skuId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="online.mwang.mockdata.bean.OrderDetailCoupon" useGeneratedKeys="true">
+    insert into order_detail_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderDetailId != null">
+        order_detail_id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="couponUseId != null">
+        coupon_use_id,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderDetailId != null">
+        #{orderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="couponUseId != null">
+        #{couponUseId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.mwang.mockdata.bean.OrderDetailCoupon">
+    update order_detail_coupon
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderDetailId != null">
+        order_detail_id = #{orderDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="couponUseId != null">
+        coupon_use_id = #{couponUseId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.mwang.mockdata.bean.OrderDetailCoupon">
+    update order_detail_coupon
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_detail_id = #{orderDetailId,jdbcType=BIGINT},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      coupon_use_id = #{couponUseId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

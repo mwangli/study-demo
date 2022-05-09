@@ -1,22 +1,20 @@
 package online.mwang.mockdata;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import online.mwang.mockdata.bean.CartInfo;
+import online.mwang.mockdata.bean.UserInfo;
 import online.mwang.mockdata.mapper.*;
-import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.SqlSessionFactoryBean;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.PostConstruct;
-
-@Slf4j
-@SpringBootApplication
-@RequiredArgsConstructor
-public class MockDataApplication {
+/**
+ * @author mwangli
+ * @date 2022/5/9 17:24
+ */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class MockDataTest {
 
     @Autowired
     private static CartInfoMapper cartInfoMapper;
@@ -34,12 +32,11 @@ public class MockDataApplication {
     @Autowired
     private  UserInfoMapper userInfoMapper;
 
-    public static void main(String[] args) {
-      SpringApplication.run(MockDataApplication.class, args);
-
+    @Test
+    public void test(){
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(1L);
+        System.out.println(userInfo);
     }
-
-
 
 
 }
