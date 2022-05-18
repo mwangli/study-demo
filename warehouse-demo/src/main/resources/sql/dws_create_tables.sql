@@ -1,8 +1,8 @@
 use warehouse;
 
---dws_user_action_daycount
+--dws_user_action_daycount 用户行为日统计表
 drop table if exists dws_user_action_daycount;
-create table dws_user_action_daycount
+create external table dws_user_action_daycount
 (
     user_id                string comment '用户id',
     login_count            bigint comment '登陆次数',
@@ -34,15 +34,15 @@ create table dws_user_action_daycount
                                         :decimal(20), order_coupon_amount :decimal(20),order_original_amount
                                         :decimal(20),order_final_amount
                                         :decimal(20)>> comment '订单明细'
-)
+) comment '用户行为日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_user_action_daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dws_visitor_action_daycount
+--dws_visitor_action_daycount 访客行为日统计表
 drop table if exists dws_visitor_action_daycount;
-create table dws_visitor_action_daycount
+create external table dws_visitor_action_daycount
 (
     mid_id       string comment '设备id',
     brand        string comment '设备品牌',
@@ -54,15 +54,15 @@ create table dws_visitor_action_daycount
     version_code array<string> comment '应用版本',
     visit_count  bigint comment '访问次数',
     visit_pages  array<struct<page_id:string,page_count:bigint,during_time:bigint>>
-)
+) comment '访客行为日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_visitor_action_daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dws_sku_action_daycount
+--dws_sku_action_daycount 商品数据日统计表
 drop table if exists dws_sku_action_daycount;
-create table dws_sku_action_daycount
+create external table dws_sku_action_daycount
 (
     sku_id                 string comment 'sku_id',
     order_count            bigint comment '被下单次数',
@@ -88,16 +88,16 @@ create table dws_sku_action_daycount
     appraise_mid_count     bigint comment '中评次数',
     appraise_bad_count     bigint comment '差评次数',
     appraise_default_count bigint comment '默认评价次数'
-)
+) comment '商品数据日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_sku_action_daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dws_coupon_info_daycount
+--dws_coupon_info_daycount 优惠券数据日统计表
 drop table if exists dws_coupon_info_daycount;
-create table dws_coupon_info_daycount
+create external table dws_coupon_info_daycount
 (
     coupon_id               string comment '优惠券id',
     get_count               bigint comment '被领取次数',
@@ -110,15 +110,15 @@ create table dws_coupon_info_daycount
     payment_reduce_amount   decimal comment '支付优惠金额',
     payment_original_amount decimal comment '支付原始金额',
     payment_final_amount    decimal comment '支付最终金额'
-)
+) comment '优惠券数据日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_coupon_info_daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dws_activity_info_daycount
+--dws_activity_info_daycount 活动数据日统计表
 drop table if exists dws_activity_info_daycount;
-create table dws_activity_info_daycount
+create external table dws_activity_info_daycount
 (
     activity_rule_id        string comment '活动规则id',
     activity_id             string comment '活动id',
@@ -130,15 +130,15 @@ create table dws_activity_info_daycount
     payment_reduce_amount   decimal comment '活动支付优惠金额',
     payment_original_amount decimal comment '活动支付原始金额',
     payment_final_amount    decimal comment '活动支付最终金额'
-)
+) comment '活动数据日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_activity_info_daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dws_area_info_daycount
+--dws_area_info_daycount 地区数据日统计表
 drop table if exists dws_area_info_daycount;
-create table dws_area_info_daycount
+create external table dws_area_info_daycount
 (
     area_code             string comment '地区编号',
     visit_count           bigint comment '访问次数',
@@ -153,7 +153,7 @@ create table dws_area_info_daycount
     refund_order_amount   decimal comment '退单金额',
     refund_payment_count  bigint comment '退款次数',
     refund_payment_amount decimal comment '退款金额'
-)
+) comment '地区数据日统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dws/dws_area_info_daycount'

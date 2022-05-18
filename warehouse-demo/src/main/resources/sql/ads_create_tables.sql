@@ -17,7 +17,7 @@ create external table ads_visit_stats
     bounce_count     bigint comment '跳出次数',
     bounce_rate      bigint comment '跳出率',
     update_time      timestamp comment '数据更新时间'
-)
+) comment '访客统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_visit_stats';
 
@@ -31,7 +31,7 @@ create external table ads_page_path
     target      string comment '跳转目标页面',
     path_count  bigint comment '跳转次数',
     update_time timestamp comment '数据更新时间'
-)
+) comment '路径分析表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_page_path';
 
@@ -43,7 +43,7 @@ create external table ads_user_change
     user_churn_count bigint comment '流失用户数',
     user_back_count  bigint comment '回流用户数',
     update_time      timestamp comment '数据更新时间'
-)
+) comment '用户变动统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_change';
 
@@ -59,7 +59,7 @@ create external table ads_user_action
     order_count       bigint comment '下单人数',
     payment_count     bigint comment '支付人数',
     update_time       timestamp comment '数据更新时间'
-)
+) comment '用户行为分析表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_action';
 
@@ -74,7 +74,7 @@ create external table ads_user_retention
     new_user_count  bigint comment '新增用户数量',
     retention_rate  decimal comment '留存率',
     update_time     timestamp comment '数据更新时间'
-)
+) comment '用户留存率表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_user_retention';
 
@@ -97,7 +97,7 @@ create external table ads_order_spu_stats
     order_count    bigint comment '订单数量',
     order_amount   decimal comment '订单金额',
     update_time    timestamp comment '数据更新时间'
-)
+) comment '商品统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_order_spu_stats';
 
@@ -111,7 +111,7 @@ create external table ads_repeat_purchase
     tm_name              string comment '品牌名称',
     repeat_purchase_rate decimal comment '复购率',
     update_time          timestamp comment '数据更新时间'
-)
+) comment '品牌复购率表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_repeat_purchase';
 
@@ -125,7 +125,7 @@ create external table ads_order_stats
     order_count      bigint comment '订单数量',
     order_amount     decimal comment '订单金额',
     update_time      timestamp comment '数据更新时间'
-)
+) comment '订单统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_order_stats';
 
@@ -147,7 +147,7 @@ create external table ads_coupon_stats
     reduce_amount         decimal comment '优惠金额',
     reduce_rate           decimal comment '补贴率',
     update_time           timestamp comment '数据更新时间'
-)
+) comment '优惠券统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_coupon_stats';
 
@@ -166,6 +166,6 @@ create external table ads_activity_stats
     reduce_amount         decimal comment '优惠金额',
     reduce_rate           decimal comment '补贴率',
     update_time           timestamp comment '数据更新时间'
-)
+) comment '活动统计表'
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ads/ads_activity_stats';

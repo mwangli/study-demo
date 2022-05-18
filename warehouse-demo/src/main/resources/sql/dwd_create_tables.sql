@@ -1,8 +1,8 @@
 use warehouse;
 
---dwd_start_log
+--dwd_start_log 启动日志明细表
 drop table if exists dwd_start_log;
-create table dwd_start_log
+create external table dwd_start_log
 (
     area_code       string comment '地区编码',
     brand           string comment '手机品牌',
@@ -19,15 +19,15 @@ create table dwd_start_log
     open_ad_ms      bigint comment '广告总共播放时长',
     open_ad_skip_ms bigint comment '用户跳过广告时间',
     ts              bigint comment '产生时间'
-)
+) comment '启动日志明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_start_log'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_page_log
+--dwd_page_log 页面日志明细表
 drop table if exists dwd_page_log;
-create table dwd_page_log
+create external table dwd_page_log
 (
     area_code      string comment '地区编码',
     brand          string comment '手机品牌',
@@ -45,15 +45,15 @@ create table dwd_page_log
     page_id        string comment '页面id',
     source_type    string comment '来源类型',
     ts             bigint comment '产生时间'
-)
+) comment '页面日志明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_page_log'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_action_log
+--dwd_action_log 行为日志明细表
 drop table if exists dwd_action_log;
-create table dwd_action_log
+create external table dwd_action_log
 (
     area_code        string comment '地区编码',
     brand            string comment '手机品牌',
@@ -74,15 +74,15 @@ create table dwd_action_log
     action_item      string comment '动作目标',
     action_item_type string comment '动作目标类型',
     ts               bigint comment '产生时间'
-)
+) comment '行为日志明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_action_log'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_display_log
+--dwd_display_log 曝光日志明细表
 drop table if exists dwd_display_log;
-create table dwd_display_log
+create external table dwd_display_log
 (
     area_code         string comment '地区编码',
     brand             string comment '手机品牌',
@@ -105,15 +105,15 @@ create table dwd_display_log
     display_order     string comment '曝光顺序',
     pos_id            string comment '曝光位置',
     ts                bigint comment '产生时间'
-)
+) comment '曝光日志明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_display_log'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_error_log
+--dwd_error_log 错误日志明细表
 drop table if exists dwd_error_log;
-create table dwd_error_log
+create external table dwd_error_log
 (
     area_code       string comment '地区编码',
     brand           string comment '手机品牌',
@@ -140,15 +140,15 @@ create table dwd_error_log
     error_code      string comment '错误码',
     msg             string comment '错误信息',
     ts              bigint comment '产生时间'
-)
+) comment '错误日志明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_error_log'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_comment_info
+--dwd_comment_info 评论明细表
 drop table if exists dwd_comment_info;
-create table dwd_comment_info
+create external table dwd_comment_info
 (
     id          string comment '编号',
     user_id     string comment '用户id',
@@ -157,15 +157,15 @@ create table dwd_comment_info
     order_id    string comment '订单id',
     appraise    string comment '商品评价',
     create_time timestamp comment '评价时间'
-)
+) comment '评论明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_comment_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_order_detail
+--dwd_order_detail 订单详情明细表
 drop table if exists dwd_order_detail;
-create table dwd_order_detail
+create external table dwd_order_detail
 (
     id                    string comment '订单明细编号',
     order_id              string comment '订单号',
@@ -183,15 +183,15 @@ create table dwd_order_detail
     split_coupon_amount   decimal comment '优惠券优惠分摊',
     split_total_amount    decimal comment '最终优惠分摊',
     create_time           timestamp comment '创建时间'
-)
+) comment '订单详情明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_order_detail'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_order_refund_info
+--dwd_order_refund_info 退单信息明细表
 drop table if exists dwd_order_refund_info;
-create table dwd_order_refund_info
+create external table dwd_order_refund_info
 (
     id                 string comment '编号',
     order_id           string comment '订单号',
@@ -203,16 +203,16 @@ create table dwd_order_refund_info
     refund_amount      string comment '退单金额',
     refund_reason_type string comment '退单原因类型',
     create_time        timestamp comment '创建时间'
-)
+) comment '退单信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_order_refund_info'
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dwd_cart_info
+--dwd_cart_info 加购信息明细表
 drop table if exists dwd_cart_info;
-create table dwd_cart_info
+create external table dwd_cart_info
 (
     id           string comment '编号',
     user_id      string comment '用户id',
@@ -225,15 +225,15 @@ create table dwd_cart_info
     create_time  timestamp comment '创建时间',
     operate_time timestamp comment '操作时间',
     order_time   timestamp comment '操作时间'
-)
+) comment '加购信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_cart_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_favor_info
+--dwd_favor_info 收藏信息明细表
 drop table if exists dwd_favor_info;
-create table dwd_favor_info
+create external table dwd_favor_info
 (
     id          string comment '编号',
     user_id     string comment '用户id',
@@ -242,15 +242,15 @@ create table dwd_favor_info
     is_cancel   string comment '是否取消',
     create_time timestamp comment '创建时间',
     cancel_time timestamp comment '取消时间'
-)
+) comment '收藏信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_favor_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_coupon_use
+--dwd_coupon_use 优惠券使用明细表
 drop table if exists dwd_coupon_use;
-create table dwd_coupon_use
+create external table dwd_coupon_use
 (
     id            string comment '编号',
     coupon_id     string comment '优惠券id',
@@ -261,15 +261,15 @@ create table dwd_coupon_use
     using_time    timestamp comment '下单时间',
     used_time     timestamp comment '支付时间',
     expire_time   timestamp comment '过期时间'
-)
+) comment '优惠券使用明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_coupon_use'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_payment_info
+--dwd_payment_info 支付信息明细表
 drop table if exists dwd_payment_info;
-create table dwd_payment_info
+create external table dwd_payment_info
 (
     id             string comment '编号',
     order_id       string comment '订单编号',
@@ -282,15 +282,15 @@ create table dwd_payment_info
     payment_status string comment '支付状态',
     create_time    timestamp comment '创建时间',
     callback_time  timestamp comment '支付完成时间'
-)
+) comment '支付信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_payment_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_refund_payment
+--dwd_refund_payment 退款信息明细表
 drop table if exists dwd_refund_payment;
-create table dwd_refund_payment
+create external table dwd_refund_payment
 (
     id            string comment '编号',
     user_id       string comment '用户id',
@@ -304,15 +304,15 @@ create table dwd_refund_payment
     refund_status decimal comment '退款状态',
     create_time   timestamp comment '创建时间',
     callback_time timestamp comment '退款时间'
-)
+) comment '退款信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_refund_payment'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwd_order_info
+--dwd_order_info 订单信息明细表
 drop table if exists dwd_order_info;
-create table dwd_order_info
+create external table dwd_order_info
 (
     id                     bigint comment '编号',
     order_status           string comment '订单状态',
@@ -335,7 +335,7 @@ create table dwd_order_info
     coupon_reduce_amount   decimal comment '优惠券',
     original_total_amount  decimal comment '原价金额',
     total_amount           decimal comment '总金额'
-)
+) comment '订单信息明细表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwd/dwd_order_info'

@@ -1,8 +1,8 @@
 use warehouse;
 
---dwt_user_action_7daycount
+--dwt_user_action_7daycount 用户行为周统计表
 drop table if exists dwt_user_action_7daycount;
-create table dwt_user_action_7daycount
+create external table dwt_user_action_7daycount
 (
     user_id                string comment '用户id',
     login_count            bigint comment '登陆次数',
@@ -34,15 +34,15 @@ create table dwt_user_action_7daycount
                                               :decimal(20), order_coupon_amount :decimal(20),order_original_amount
                                               :decimal(20),order_final_amount
                                               :decimal(20)>>> comment '订单明细'
-)
+) comment '用户行为周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_user_action_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_user_action_30daycount
+--dwt_user_action_30daycount 用户行为月统计表
 drop table if exists dwt_user_action_30daycount;
-create table dwt_user_action_30daycount
+create external table dwt_user_action_30daycount
 (
     user_id                string comment '用户id',
     login_count            bigint comment '登陆次数',
@@ -74,16 +74,16 @@ create table dwt_user_action_30daycount
                                               :decimal(20), order_coupon_amount :decimal(20),order_original_amount
                                               :decimal(20),order_final_amount
                                               :decimal(20)>>> comment '订单明细'
-)
+) comment '用户行为月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_user_action_30daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dwt_visitor_action_7daycount
+--dwt_visitor_action_7daycount 访客行为周统计表
 drop table if exists dwt_visitor_action_7daycount;
-create table dwt_visitor_action_7daycount
+create external table dwt_visitor_action_7daycount
 (
     mid_id       string comment '设备id',
     brand        string comment '设备品牌',
@@ -95,15 +95,15 @@ create table dwt_visitor_action_7daycount
     version_code array<array<string>> comment '应用版本',
     visit_count  bigint comment '访问次数',
     visit_pages  array<array<struct<page_id:string,page_count:bigint,during_time:bigint>>> comment '访问页面'
-)
+) comment '访客行为周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_visitor_action_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_visitor_action_30daycount
+--dwt_visitor_action_30daycount 访客行为月统计表
 drop table if exists dwt_visitor_action_30daycount;
-create table dwt_visitor_action_30daycount
+create external table dwt_visitor_action_30daycount
 (
     mid_id       string comment '设备id',
     brand        string comment '设备品牌',
@@ -115,16 +115,16 @@ create table dwt_visitor_action_30daycount
     version_code array<array<string>> comment '应用版本',
     visit_count  bigint comment '访问次数',
     visit_pages  array<array<struct<page_id:string,page_count:bigint,during_time:bigint>>> comment '访问页面'
-)
+) comment '访客行为月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_visitor_action_30daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dwt_sku_action_7daycount
+--dwt_sku_action_7daycount 商品数据周统计表
 drop table if exists dwt_sku_action_7daycount;
-create table dwt_sku_action_7daycount
+create external table dwt_sku_action_7daycount
 (
     sku_id                 string comment 'sku_id',
     order_count            bigint comment '被下单次数',
@@ -150,15 +150,15 @@ create table dwt_sku_action_7daycount
     appraise_mid_count     bigint comment '中评次数',
     appraise_bad_count     bigint comment '差评次数',
     appraise_default_count bigint comment '默认评价次数'
-)
+) comment '商品数据周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_sku_action_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_sku_action_30daycount
+--dwt_sku_action_30daycount 商品数据月统计表
 drop table if exists dwt_sku_action_30daycount;
-create table dwt_sku_action_30daycount
+create external table dwt_sku_action_30daycount
 (
     sku_id                 string comment 'sku_id',
     order_count            bigint comment '被下单次数',
@@ -184,16 +184,16 @@ create table dwt_sku_action_30daycount
     appraise_mid_count     bigint comment '中评次数',
     appraise_bad_count     bigint comment '差评次数',
     appraise_default_count bigint comment '默认评价次数'
-)
+)comment '商品数据月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_sku_action_30daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dwt_coupon_info_7daycount
+--dwt_coupon_info_7daycount 优惠券数据周统计表
 drop table if exists dwt_coupon_info_7daycount;
-create table dwt_coupon_info_7daycount
+create external table dwt_coupon_info_7daycount
 (
     coupon_id               string comment '优惠券id',
     get_count               bigint comment '被领取次数',
@@ -206,15 +206,15 @@ create table dwt_coupon_info_7daycount
     payment_reduce_amount   decimal comment '支付优惠金额',
     payment_original_amount decimal comment '支付原始金额',
     payment_final_amount    decimal comment '支付最终金额'
-)
+) comment '优惠券数据周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_coupon_info_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_coupon_info_30daycount
+--dwt_coupon_info_30daycount 优惠券数据月统计表
 drop table if exists dwt_coupon_info_30daycount;
-create table dwt_coupon_info_30daycount
+create external table dwt_coupon_info_30daycount
 (
     coupon_id               string comment '优惠券id',
     get_count               bigint comment '被领取次数',
@@ -227,15 +227,15 @@ create table dwt_coupon_info_30daycount
     payment_reduce_amount   decimal comment '支付优惠金额',
     payment_original_amount decimal comment '支付原始金额',
     payment_final_amount    decimal comment '支付最终金额'
-)
+) comment '优惠券数据月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_coupon_info_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_activity_info_7daycount
+--dwt_activity_info_7daycount 活动数据周统计表
 drop table if exists dwt_activity_info_7daycount;
-create table dwt_activity_info_7daycount
+create external table dwt_activity_info_7daycount
 (
     activity_rule_id        string comment '活动规则id',
     activity_id             string comment '活动id',
@@ -247,15 +247,15 @@ create table dwt_activity_info_7daycount
     payment_reduce_amount   decimal comment '活动支付优惠金额',
     payment_original_amount decimal comment '活动支付原始金额',
     payment_final_amount    decimal comment '活动支付最终金额'
-)
+) comment '活动数据周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_activity_info_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_activity_info_30daycount
+--dwt_activity_info_30daycount 活动数据月统计表
 drop table if exists dwt_activity_info_30daycount;
-create table dwt_activity_info_30daycount
+create external table dwt_activity_info_30daycount
 (
     activity_rule_id        string comment '活动规则id',
     activity_id             string comment '活动id',
@@ -267,15 +267,15 @@ create table dwt_activity_info_30daycount
     payment_reduce_amount   decimal comment '活动支付优惠金额',
     payment_original_amount decimal comment '活动支付原始金额',
     payment_final_amount    decimal comment '活动支付最终金额'
-)
+) comment '活动数据月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_activity_info_30daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_area_info_7daycount
+--dwt_area_info_7daycount 地区数据周统计表
 drop table if exists dwt_area_info_7daycount;
-create table dwt_area_info_7daycount
+create external table dwt_area_info_7daycount
 (
     area_code             string comment '地区编号',
     visit_count           bigint comment '访问次数',
@@ -290,15 +290,15 @@ create table dwt_area_info_7daycount
     refund_order_amount   decimal comment '退单金额',
     refund_payment_count  bigint comment '退款次数',
     refund_payment_amount decimal comment '退款金额'
-)
+) comment '地区数据周统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_area_info_7daycount'
     tblproperties ('parquet.compression' = 'lzo');
 
---dwt_area_info_30daycount
+--dwt_area_info_30daycount 地区数据月统计表
 drop table if exists dwt_area_info_30daycount;
-create table dwt_area_info_30daycount
+create external table dwt_area_info_30daycount
 (
     area_code             string comment '地区编号',
     visit_count           bigint comment '访问次数',
@@ -313,7 +313,7 @@ create table dwt_area_info_30daycount
     refund_order_amount   decimal comment '退单金额',
     refund_payment_count  bigint comment '退款次数',
     refund_payment_amount decimal comment '退款金额'
-)
+) comment '地区数据月统计表'
     partitioned by (dt string)
     stored as parquet
     location '/hive/warehouse/dwt/dwt_area_info_30daycount'

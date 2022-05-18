@@ -1,6 +1,6 @@
 use warehouse;
 
---dim_sku_info
+--dim_sku_info 商品维度表
 drop table if exists dim_sku_info;
 create external table dim_sku_info
 (
@@ -31,7 +31,7 @@ create external table dim_sku_info
     location '/hive/warehouse/dim/dim_sku_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dim_coupon_info
+--dim_coupon_info 优惠券维度表
 drop table if exists dim_coupon_info;
 create external table dim_coupon_info
 (
@@ -58,7 +58,7 @@ create external table dim_coupon_info
     tblproperties ('parquet.compression' = 'lzo');
 
 
---dim_activity_rule_info
+--dim_activity_rule_info 活动规则维度表
 drop table if exists dim_activity_rule_info;
 create external table dim_activity_rule_info
 (
@@ -80,7 +80,7 @@ create external table dim_activity_rule_info
     location '/hive/warehouse/dim/dim_activity_rule_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dim_base_province
+--dim_base_province 地区维度表
 drop table if exists dim_base_province;
 create external table dim_base_province
 (
@@ -96,7 +96,7 @@ create external table dim_base_province
     location '/hive/warehouse/dim/dim_base_province'
     tblproperties ('parquet.compression' = 'lzo');
 
---dim_user_info
+--dim_user_info 用户维度表
 drop table if exists dim_user_info;
 create external table dim_user_info
 (
@@ -121,11 +121,11 @@ create external table dim_user_info
     location '/hive/warehouse/dim/dim_user_info'
     tblproperties ('parquet.compression' = 'lzo');
 
---dim_date_info
+--dim_date_info 时间维度表
 drop table if exists dim_date_info;
 create external table dim_date_info
 (
-    date_id  string comment '日期',
+    date_id      string comment '日期',
     year         string comment '年',
     month        string comment '月',
     day          string comment '日',

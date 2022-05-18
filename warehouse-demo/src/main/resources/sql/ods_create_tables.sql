@@ -1,16 +1,16 @@
 -- create database warehouse;
 use warehouse;
 
---ods_log
+--ods_log 日志数据原始表
 drop table if exists ods_logs;
 create external table ods_logs
 (
     line string comment '日志详情'
-)
+) comment '日志数据原始表'
     partitioned by (dt string)
     location '/hive/warehouse/ods/ods_log';
 
---ods_activity_info
+--ods_activity_info 活动信息原始表
 drop table if exists ods_activity_info;
 create external table ods_activity_info
 (
@@ -21,12 +21,12 @@ create external table ods_activity_info
     start_time    timestamp comment '开始时间',
     end_time      timestamp comment '结束时间',
     create_time   timestamp comment '创建时间'
-)
+) comment '活动信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_activity_info';
 
---ods_activity_rule
+--ods_activity_rule 活动规则原始表
 drop table if exists ods_activity_rule;
 create external table ods_activity_rule
 (
@@ -38,12 +38,12 @@ create external table ods_activity_rule
     benefit_amount   decimal comment '优惠金额',
     benefit_discount decimal comment '优惠折扣',
     benefit_level    bigint comment '优惠级别'
-)
+) comment '活动规则原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_activity_rule';
 
---ods_activity_sku
+--ods_activity_sku 活动商品原始表
 drop table if exists ods_activity_sku;
 create external table ods_activity_sku
 (
@@ -51,12 +51,12 @@ create external table ods_activity_sku
     activity_id bigint comment '活动id ',
     sku_id      bigint comment 'sku_id',
     create_time timestamp comment '创建时间'
-)
+) comment '活动商品原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_activity_sku';
 
---ods_base_attr_info
+--ods_base_attr_info 平台属性原始表
 drop table if exists ods_base_attr_info;
 create external table ods_base_attr_info
 (
@@ -64,59 +64,59 @@ create external table ods_base_attr_info
     attr_name      string comment '属性名称',
     category_id    bigint comment '分类id',
     category_level int comment '分类层级'
-)
+) comment '平台属性原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_attr_info';
 
---ods_base_attr_value
+--ods_base_attr_value 平台属性值原始表
 drop table if exists ods_base_attr_value;
 create external table ods_base_attr_value
 (
     id         bigint comment '编号',
     value_name string comment '属性值名称',
     attr_id    bigint comment '属性id'
-)
+) comment '平台属性值原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_attr_value';
 
---ods_base_category1
+--ods_base_category1 一级分类原始表
 drop table if exists ods_base_category1;
 create external table ods_base_category1
 (
     id   bigint comment '编号',
     name string comment '分类名称'
-)
+) comment '一级分类原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_category1';
 
---ods_base_category2
+--ods_base_category2 二级分类原始表
 drop table if exists ods_base_category2;
 create external table ods_base_category2
 (
     id           bigint comment '编号',
     name         string comment '二级分类名称',
     category1_id bigint comment '一级分类编号'
-)
+) comment '二级分类原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_category2';
 
---ods_base_category3
+--ods_base_category3 三级分类原始表
 drop table if exists ods_base_category3;
 create external table ods_base_category3
 (
     id           bigint comment '编号',
     name         string comment '三级分类名称',
     category2_id bigint comment '二级分类编号'
-)
+) comment '三级分类原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_category3';
 
---ods_base_dic
+--ods_base_dic 数据字典原始表
 drop table if exists ods_base_dic;
 create external table ods_base_dic
 (
@@ -125,12 +125,12 @@ create external table ods_base_dic
     parent_code  string comment '父编号',
     create_time  timestamp comment '创建日期',
     operate_time timestamp comment '修改日期'
-)
+) comment '数据字典原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_dic';
 
---ods_base_province
+--ods_base_province 省份原始表
 drop table if exists ods_base_province;
 create external table ods_base_province
 (
@@ -140,46 +140,46 @@ create external table ods_base_province
     area_code  string comment '行政区位码',
     iso_code   string comment '国际编码',
     iso_3166_2 string comment 'ISO3166编码'
-)
+) comment '省份原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_province';
 
---ods_base_region
+--ods_base_region 地区原始表
 drop table if exists ods_base_region;
 create external table ods_base_region
 (
     id          string comment '大区id',
     region_name string comment '大区名称'
-)
+) comment '地区原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_region';
 
---ods_base_sale_attr
+--ods_base_sale_attr 销售属性原始表
 drop table if exists ods_base_sale_attr;
 create external table ods_base_sale_attr
 (
     id   bigint comment '编号',
     name string comment '销售属性名称'
-)
+) comment '销售属性原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_sale_attr';
 
---ods_base_trademark
+--ods_base_trademark 品牌信息原始表
 drop table if exists ods_base_trademark;
 create external table ods_base_trademark
 (
     id       bigint comment '编号',
     tm_name  string comment '属性值',
     logo_url string comment '品牌logo的图片路径'
-)
+) comment '品牌信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_base_trademark';
 
---ods_cart_info
+--ods_cart_info 加购信息原始表
 drop table if exists ods_cart_info;
 create external table ods_cart_info
 (
@@ -197,12 +197,12 @@ create external table ods_cart_info
     order_time   timestamp comment '下单时间',
     source_type  string comment '来源类型',
     source_id    bigint comment '来源编号'
-)
+) comment '加购信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_cart_info';
 
---ods_comment_info
+--ods_comment_info 评论信息原始表
 drop table if exists ods_comment_info;
 create external table ods_comment_info
 (
@@ -217,12 +217,12 @@ create external table ods_comment_info
     comment_txt  string comment '评价内容',
     create_time  timestamp comment '创建时间',
     operate_time timestamp comment '修改时间'
-)
+) comment '评论信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_comment_info';
 
---ods_coupon_info
+--ods_coupon_info 优惠券信息原始表
 drop table if exists ods_coupon_info;
 create external table ods_coupon_info
 (
@@ -243,12 +243,12 @@ create external table ods_coupon_info
     operate_time     timestamp comment '修改时间',
     expire_time      timestamp comment '过期时间',
     range_desc       string comment '范围描述'
-)
+) comment '优惠券信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_coupon_info';
 
---ods_coupon_range
+--ods_coupon_range 优惠券范围原始表
 drop table if exists ods_coupon_range;
 create external table ods_coupon_range
 (
@@ -256,12 +256,12 @@ create external table ods_coupon_range
     coupon_id  bigint comment '优惠券id',
     range_type string comment '范围类型 1、商品(spuid) 2、品类(三级分类id) 3、品牌',
     range_id   bigint
-)
+) comment '优惠券范围原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_coupon_range';
 
---ods_coupon_use
+--ods_coupon_use 优惠券使用原始表
 drop table if exists ods_coupon_use;
 create external table ods_coupon_use
 (
@@ -274,12 +274,12 @@ create external table ods_coupon_use
     using_time    timestamp comment '使用时间',
     used_time     timestamp comment '支付时间',
     expire_time   timestamp comment '过期时间'
-)
+) comment '优惠券使用原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_coupon_use';
 
---ods_favor_info
+--ods_favor_info 收藏信息原始表
 drop table if exists ods_favor_info;
 create external table ods_favor_info
 (
@@ -290,12 +290,12 @@ create external table ods_favor_info
     is_cancel   string comment '是否已取消 0 正常 1 已取消',
     create_time timestamp comment '创建时间',
     cancel_time timestamp comment '修改时间'
-)
+) comment '收藏信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_favor_info';
 
---ods_order_detail
+--ods_order_detail 订单详情原始表
 drop table if exists ods_order_detail;
 create external table ods_order_detail
 (
@@ -312,12 +312,12 @@ create external table ods_order_detail
     split_total_amount    decimal,
     split_activity_amount decimal,
     split_coupon_amount   decimal
-)
+) comment '订单详情原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_detail';
 
---ods_order_detail_activity
+--ods_order_detail_activity 订单详情活动原始表
 drop table if exists ods_order_detail_activity;
 create external table ods_order_detail_activity
 (
@@ -328,12 +328,12 @@ create external table ods_order_detail_activity
     activity_rule_id bigint comment '活动规则',
     sku_id           bigint comment 'skuID',
     create_time      timestamp comment '获取时间'
-)
+) comment '订单详情活动原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_detail_activity';
 
---ods_order_detail_coupon
+--ods_order_detail_coupon 订单详情优惠券原始表
 drop table if exists ods_order_detail_coupon;
 create external table ods_order_detail_coupon
 (
@@ -344,12 +344,12 @@ create external table ods_order_detail_coupon
     coupon_use_id   bigint comment '购物券领用id',
     sku_id          bigint comment 'skuID',
     create_time     timestamp comment '获取时间'
-)
+) comment '订单详情优惠券原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_detail_coupon';
 
---ods_order_info
+--ods_order_info 订单信息原始表
 drop table if exists ods_order_info;
 create external table ods_order_info
 (
@@ -378,12 +378,12 @@ create external table ods_order_info
     feight_fee             decimal comment '运费',
     feight_fee_reduce      decimal comment '运费减免',
     refundable_time        timestamp comment '可退款日期（签收后30天）'
-)
+) comment '订单信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_info';
 
---ods_order_refund_info
+--ods_order_refund_info 退单信息原始表
 drop table if exists ods_order_refund_info;
 create external table ods_order_refund_info
 (
@@ -398,25 +398,25 @@ create external table ods_order_refund_info
     refund_reason_txt  string comment '原因内容',
     refund_status      string comment '退款状态（0：待审批 1：已退款）',
     create_time        timestamp comment '创建时间'
-)
+) comment '退单信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_refund_info';
 
---ods_order_status_log
+--ods_order_status_log 订单流水原始表
 drop table if exists ods_order_status_log;
 create external table ods_order_status_log
 (
-    id           bigint,
-    order_id     bigint,
-    order_status string,
-    operate_time timestamp
-)
+    id           bigint comment 'ID',
+    order_id     bigint comment '订单ID',
+    order_status string comment  '订单状态',
+    operate_time timestamp comment  '操作时间'
+) comment '订单流水原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_order_status_log';
 
---ods_payment_info
+--ods_payment_info 支付信息原始表
 drop table if exists ods_payment_info;
 create external table ods_payment_info
 (
@@ -432,12 +432,12 @@ create external table ods_payment_info
     create_time      timestamp comment '创建时间',
     callback_time    timestamp comment '回调时间',
     callback_content string comment '回调信息'
-)
+) comment '支付信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_payment_info';
 
---ods_refund_payment
+--ods_refund_payment 退款信息原始表
 drop table if exists ods_refund_payment;
 create external table ods_refund_payment
 (
@@ -453,12 +453,12 @@ create external table ods_refund_payment
     create_time      timestamp comment '创建时间',
     callback_time    timestamp comment '回调时间',
     callback_content string comment '回调信息'
-)
+) comment '退款信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_refund_payment';
 
---ods_sku_attr_value
+--ods_sku_attr_value 商品属性值原始表
 drop table if exists ods_sku_attr_value;
 create external table ods_sku_attr_value
 (
@@ -468,12 +468,12 @@ create external table ods_sku_attr_value
     sku_id     bigint comment 'skuid',
     attr_name  string comment '属性名',
     value_name string comment '属性值名称'
-)
+) comment '商品属性值原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_sku_attr_value';
 
---ods_sku_image
+--ods_sku_image 商品图片原始表
 drop table if exists ods_sku_image;
 create external table ods_sku_image
 (
@@ -483,13 +483,13 @@ create external table ods_sku_image
     img_url    string comment '图片路径(冗余)',
     spu_img_id bigint comment '商品图片id',
     is_default string comment '是否默认'
-)
+) comment '商品图片原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_sku_image';
 
 
---ods_sku_info
+--ods_sku_info 商品信息原始表
 drop table if exists ods_sku_info;
 create external table ods_sku_info
 (
@@ -504,12 +504,12 @@ create external table ods_sku_info
     sku_default_img string comment '默认显示图片(冗余)',
     is_sale         tinyint comment '是否销售（1：是 0：否）',
     create_time     timestamp comment '创建时间'
-)
+) comment '商品信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_sku_info';
 
---ods_sale_attr_value
+--ods_sale_attr_value 销售属性值原始表
 drop table if exists ods_sale_attr_value;
 create external table ods_sale_attr_value
 (
@@ -520,12 +520,12 @@ create external table ods_sale_attr_value
     sale_attr_id         bigint,
     sale_attr_name       string,
     sale_attr_value_name string
-)
+) comment '销售属性值原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_sale_attr_value';
 
---ods_spu_image
+--ods_spu_image 商品spu图片原始表
 drop table if exists ods_spu_image;
 create external table ods_spu_image
 (
@@ -533,12 +533,12 @@ create external table ods_spu_image
     spu_id   bigint comment '商品id',
     img_name string comment '图片名称',
     img_url  string comment '图片路径'
-)
+) comment '商品spu图片原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_spu_image';
 
---ods_spu_info
+--ods_spu_info 商品spu信息原始表
 drop table if exists ods_spu_info;
 create external table ods_spu_info
 (
@@ -547,12 +547,12 @@ create external table ods_spu_info
     description  string comment '商品描述(后台简述）',
     category3_id bigint comment '三级分类id',
     tm_id        bigint comment '品牌id'
-)
+) comment '商品spu信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_spu_info';
 
---ods_spu_sale_attr
+--ods_spu_sale_attr 商品spu销售属性原始表
 drop table if exists ods_spu_sale_attr;
 create external table ods_spu_sale_attr
 (
@@ -560,12 +560,12 @@ create external table ods_spu_sale_attr
     spu_id            bigint comment '商品id',
     base_sale_attr_id bigint comment '销售属性id',
     sale_attr_name    string comment '销售属性名称(冗余)'
-)
+) comment '商品spu销售属性原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_spu_sale_attr';
 
---ods_spu_sale_attr_value
+--ods_spu_sale_attr_value 商品spu销售属性值原始表
 drop table if exists ods_spu_sale_attr_value;
 create external table ods_spu_sale_attr_value
 (
@@ -574,12 +574,12 @@ create external table ods_spu_sale_attr_value
     base_sale_attr_id    bigint comment '销售属性id',
     sale_attr_value_name string comment '销售属性值名称',
     sale_attr_name       string comment '销售属性名称(冗余)'
-)
+) comment '商品spu销售属性值原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_spu_sale_attr_value';
 
---ods_user_info
+--ods_user_info 用户信息原始表
 drop table if exists ods_user_info;
 create external table ods_user_info
 (
@@ -597,7 +597,7 @@ create external table ods_user_info
     create_time  timestamp comment '创建时间',
     operate_time timestamp comment '修改时间',
     status       string comment '状态'
-)
+) comment '用户信息原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_user_info';
