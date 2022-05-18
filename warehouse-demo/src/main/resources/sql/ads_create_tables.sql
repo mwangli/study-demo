@@ -2,7 +2,7 @@ use warehouse;
 
 --ads_visit_stats 访客统计
 drop table if exists ads_visit_stats;
-create table ads_visit_stats
+create external table ads_visit_stats
 (
     date_id          string comment '统计日期',
     is_new           string comment '是否新用户',
@@ -23,7 +23,7 @@ create table ads_visit_stats
 
 --ads_page_path 路径分析
 drop table if exists ads_page_path;
-create table ads_page_path
+create external table ads_page_path
 (
     date_id     string comment '统计日期',
     recent_days bigint comment '最近天数:1天,7天,30天',
@@ -37,7 +37,7 @@ create table ads_page_path
 
 --ads_user_change 用户变动统计
 drop table if exists ads_user_change;
-create table ads_user_change
+create external table ads_user_change
 (
     date_id          string comment '统计日期',
     user_churn_count bigint comment '流失用户数',
@@ -49,7 +49,7 @@ create table ads_user_change
 
 --ads_user_action 用户行为分析
 drop table if exists ads_user_action;
-create table ads_user_action
+create external table ads_user_action
 (
     date_id           string comment '统计日期',
     recent_days       bigint comment '统计天数：1天,7天,30天',
@@ -65,7 +65,7 @@ create table ads_user_action
 
 --ads_user_retention 用户留存率
 drop table if exists ads_user_retention;
-create table ads_user_retention
+create external table ads_user_retention
 (
     date_id         string comment '统计日期',
     crate_date      string comment '用户新增日期',
@@ -80,7 +80,7 @@ create table ads_user_retention
 
 --ads_order_spu_stats 商品统计
 drop table if exists ads_order_spu_stats;
-create table ads_order_spu_stats
+create external table ads_order_spu_stats
 (
     date_id        string comment '统计日期',
     recent_days    bigint comment '统计天数：1天,7天,30天',
@@ -103,7 +103,7 @@ create table ads_order_spu_stats
 
 --ads_repeat_purchase 品牌复购率
 drop table if exists ads_repeat_purchase;
-create table ads_repeat_purchase
+create external table ads_repeat_purchase
 (
     date_id              string comment '统计日期',
     recent_days          bigint comment '统计天数：1天,7天,30天',
@@ -117,7 +117,7 @@ create table ads_repeat_purchase
 
 --ads_order_stats 订单统计
 drop table if exists ads_order_stats;
-create table ads_order_stats
+create external table ads_order_stats
 (
     date_id          string comment '统计日期',
     recent_days      bigint comment '统计天数：1天,7天,30天',
@@ -131,7 +131,7 @@ create table ads_order_stats
 
 --ads_coupon_stats 优惠券统计
 drop table if exists ads_coupon_stats;
-create table ads_coupon_stats
+create external table ads_coupon_stats
 (
     date_id               string comment '统计日期',
     recent_days           bigint comment '统计天数：1天,7天,30天',
@@ -153,7 +153,7 @@ create table ads_coupon_stats
 
 --ads_activity_stats 活动统计
 drop table if exists ads_activity_stats;
-create table ads_activity_stats
+create external table ads_activity_stats
 (
     date_id               string comment '统计日期',
     recent_days           bigint comment '统计天数：1天,7天,30天',

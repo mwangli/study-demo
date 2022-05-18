@@ -1,4 +1,4 @@
-package onlime.mwang.hive.udtf;
+package online.mwang.hive.udtf;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

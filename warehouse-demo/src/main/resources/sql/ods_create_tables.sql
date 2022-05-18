@@ -5,7 +5,7 @@ use warehouse;
 drop table if exists ods_logs;
 create external table ods_logs
 (
-    line string
+    line string comment '日志详情'
 )
     partitioned by (dt string)
     location '/hive/warehouse/ods/ods_log';
