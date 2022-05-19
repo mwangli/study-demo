@@ -509,9 +509,9 @@ create external table ods_sku_info
     row format delimited fields terminated by '\t'
     location '/hive/warehouse/ods/ods_sku_info';
 
---ods_sale_attr_value 销售属性值原始表
-drop table if exists ods_sale_attr_value;
-create external table ods_sale_attr_value
+--ods_sku_sale_attr_value 销售属性值原始表
+drop table if exists ods_sku_sale_attr_value;
+create external table ods_sku_sale_attr_value
 (
     id                   bigint comment 'id',
     sku_id               bigint comment '库存单元id',
@@ -523,7 +523,7 @@ create external table ods_sale_attr_value
 ) comment '销售属性值原始表'
     partitioned by (dt string)
     row format delimited fields terminated by '\t'
-    location '/hive/warehouse/ods/ods_sale_attr_value';
+    location '/hive/warehouse/ods/ods_sku_sale_attr_value';
 
 --ods_spu_image 商品spu图片原始表
 drop table if exists ods_spu_image;
