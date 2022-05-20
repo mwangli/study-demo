@@ -160,15 +160,30 @@ from (
      on r.activity_id = i.id;
 
 insert overwrite table dim_base_province
-select p.id,
-       p.name,
-       p.area_code,
-       p.iso_code,
-       p.iso_3166_2,
-       p.region_id,
-       r.region_name
-from ods_base_province p
-         left join ods_base_region r on p.region_id = r.id;
+select t.id,
+       name,
+       area_code,
+       iso_code,
+       iso_3166_2,
+       region_id,
+       region_name
+from (
+         select id,
+                name,
+                area_code,
+                iso_code,
+                iso_3166_2,
+                region_id
+         from ods_base_province
+         where dt = '2022-05-20'
+     ) t
+         left join
+     (
+         select id,
+                region_name
+         from ods_base_region
+         where dt = '2022-05-20'
+     ) r on t.region_id = r.id;
 
 with tmp as (
     select old.id           old_id,

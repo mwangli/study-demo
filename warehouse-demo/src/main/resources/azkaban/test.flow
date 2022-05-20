@@ -32,6 +32,13 @@ nodes:
       - ods_load_data
     config: 
       command: /root/warehouse/dwd/dwd_load_data.sh ${date}
+  - name: dim_build_cube
+    type: command
+    dependsOn:
+      - dwd_load_data
+      - dim_load_data
+    config:
+      command: /root/warehouse/dim/dim_build_cube.sh ${date}
   - name: dws_load_data 
     type: command
     dependsOn:
