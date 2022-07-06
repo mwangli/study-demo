@@ -170,11 +170,11 @@ class MockDataApplicationTests {
         if ("order_refund_info".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
         if ("order_status_log".equals(t)) return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05'";
         if ("payment_info".equals(t))
-            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
         if ("refund_payment".equals(t))
-            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
         if ("user_info".equals(t))
-            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(operate_time,'%Y-%m-%d') = '2022-07-05'";
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(operate_time,'%Y-%m-%d') = '2022-07-05'";
         return sql;
     }
 
