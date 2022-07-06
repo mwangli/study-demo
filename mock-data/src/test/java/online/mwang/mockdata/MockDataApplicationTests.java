@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -24,7 +23,7 @@ class MockDataApplicationTests {
     void contextLoads() {
     }
 
-    private String jobJson = "{\n" +
+    private String mysql2hdfsJob = "{\n" +
             "    \"job\":{\n" +
             "        \"setting\":{\n" +
             "            \"speed\":{\n" +
@@ -114,14 +113,18 @@ class MockDataApplicationTests {
     @Test
     public void generateJobJson() {
         List<String> tables = dataXMapper.showTables();
+        List<String> ignoreTables = Arrays.asList("base_dic", "base_frontend_param", "cms_banner", "seckill_goods", "financial_sku_cost", "spu_poster", "user_address", "ware_info");
         tables.forEach(t -> {
-            JSONObject jsonObject = JSONObject.parseObject(jobJson);
+            if (t.startsWith("t_")) return;
+            if (t.startsWith("ads")) return;
+            if (ignoreTables.contains(t)) return;
+            JSONObject jsonObject = JSONObject.parseObject(mysql2hdfsJob);
             // 修改查询
             JSONArray querySql = jsonObject.getJSONObject("job").getJSONArray("content").getJSONObject(0).getJSONObject("reader").getJSONObject("parameter").getJSONArray("connection").getJSONObject(0).getJSONArray("querySql");
             List<ColumnBean> columns = dataXMapper.selectColumns(t);
             columns.forEach(c -> c.setType(getType(c.getType())));
             String columnList = columns.stream().map(ColumnBean::getName).collect(Collectors.joining(","));
-            querySql.set(0, "select " + columnList + " from " + t);
+            querySql.set(0, getQuerySql(columnList, t));
             // 修改路径
             JSONObject writerParams = jsonObject.getJSONObject("job").getJSONArray("content").getJSONObject(0).getJSONObject("writer").getJSONObject("parameter");
             writerParams.put("path", "/hive/warehouse/origin/sql-data/" + t + "/2022-07-05");
@@ -150,11 +153,29 @@ class MockDataApplicationTests {
         return type;
     }
 
-    public static void main(String[] args) {
-        ColumnBean columnBean = new ColumnBean();
-        columnBean.setName("xx");
-        columnBean.setType("yy");
-        System.out.println(JSONObject.toJSONString(columnBean));
+    public String getQuerySql(String columnList, String t) {
+        String sql = "select " + columnList + " from " + t + " ";
+        if ("cart_info".equals(t))
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(order_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("comment_info".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("coupon_use".equals(t))
+            return sql + "where date_format(get_time,'%Y-%m-%d') = '2022-07-05' or date_format(used_time,'%Y-%m-%d') = '2022-07-05' or date_format(using_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("favor_info".equals(t))
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(cancel_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_detail".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_detail_activity".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_detail_coupon".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_info".equals(t))
+            return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05' or date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(expire_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_refund_info".equals(t)) return sql + "where date_format(create_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("order_status_log".equals(t)) return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("payment_info".equals(t))
+            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("refund_payment".equals(t))
+            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(callback_time,'%Y-%m-%d') = '2022-07-05'";
+        if ("user_info".equals(t))
+            return sql + "where date_format(operate_time,'%Y-%m-%d') = '2022-07-05' or date_format(operate_time,'%Y-%m-%d') = '2022-07-05'";
+        return sql;
     }
-}
 
+}

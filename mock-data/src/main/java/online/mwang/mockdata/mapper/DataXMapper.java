@@ -13,6 +13,6 @@ public interface DataXMapper {
     @Select("show tables")
     List<String> showTables();
 
-    @Select("select column_name as name, column_type as type from information_schema.columns where table_name = #{tableName}")
+    @Select("select column_name as name, column_type as type from information_schema.columns where table_name = #{tableName} order by ordinal_position")
     List<ColumnBean> selectColumns(String tableName);
 }
