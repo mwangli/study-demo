@@ -17,7 +17,10 @@ select distinct id,
                 start_date,
                 end_date
 from dim_user_info
-where dt = '9999-99-99';
+where dt = '9999-99-99'
+  and id is not null
+order by id;
+
 
 select *
 from dim_user_info_view;
@@ -41,7 +44,9 @@ select distinct id,
                 tm_id,
                 tm_name
 from dim_sku_info
-where dt = current_date;
+where dt = current_date
+  and id is not null
+order by id;
 
 create or replace view dim_base_province_view as
 select distinct id,
@@ -52,6 +57,7 @@ select distinct id,
                 region_id,
                 region_name
 from dim_base_province
+where id is not null
 order by id;
 
 create or replace view dwd_order_detail_view as
@@ -73,6 +79,6 @@ select distinct id,
                 create_time,
                 dt
 from dwd_order_detail
-where dt = current_date;
-
-
+where dt = current_date
+  and id is not null
+order by id;
