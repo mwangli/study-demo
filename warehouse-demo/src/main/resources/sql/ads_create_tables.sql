@@ -19,6 +19,7 @@ create external table ads_visit_stats
     update_time      timestamp comment '数据更新时间'
 ) comment '访客统计表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_visit_stats';
 
 --ads_page_path 路径分析
@@ -33,6 +34,7 @@ create external table ads_page_path
     update_time timestamp comment '数据更新时间'
 ) comment '路径分析表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_page_path';
 
 --ads_user_change 用户变动统计
@@ -45,6 +47,7 @@ create external table ads_user_change
     update_time      timestamp comment '数据更新时间'
 ) comment '用户变动统计表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_user_change';
 
 --ads_user_action 用户行为分析
@@ -61,6 +64,7 @@ create external table ads_user_action
     update_time       timestamp comment '数据更新时间'
 ) comment '用户行为分析表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_user_action';
 
 --ads_user_retention 用户留存率
@@ -76,6 +80,7 @@ create external table ads_user_retention
     update_time     timestamp comment '数据更新时间'
 ) comment '用户留存率表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_user_retention';
 
 --ads_order_spu_stats 商品统计
@@ -99,6 +104,7 @@ create external table ads_order_spu_stats
     update_time    timestamp comment '数据更新时间'
 ) comment '商品统计表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_order_spu_stats';
 
 --ads_repeat_purchase 品牌复购率
@@ -113,6 +119,7 @@ create external table ads_repeat_purchase
     update_time          timestamp comment '数据更新时间'
 ) comment '品牌复购率表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_repeat_purchase';
 
 --ads_order_stats 订单统计
@@ -127,6 +134,7 @@ create external table ads_order_stats
     update_time      timestamp comment '数据更新时间'
 ) comment '订单统计表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_order_stats';
 
 --ads_coupon_stats 优惠券统计
@@ -149,6 +157,7 @@ create external table ads_coupon_stats
     update_time           timestamp comment '数据更新时间'
 ) comment '优惠券统计表'
     row format delimited fields terminated by '\t'
+    stored as textfile
     location '/hive/warehouse/ads/ads_coupon_stats';
 
 --ads_activity_stats 活动统计
