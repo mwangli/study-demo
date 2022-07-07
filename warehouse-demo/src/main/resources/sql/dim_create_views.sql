@@ -43,6 +43,35 @@ select distinct id,
 from dim_sku_info
 where dt = current_date;
 
-select *
-from dim_sku_info_view
+create or replace view dim_base_province_view as
+select distinct id,
+                province_name,
+                area_code,
+                iso_code,
+                iso_3166_2,
+                region_id,
+                region_name
+from dim_base_province
 order by id;
+
+create or replace view dwd_order_detail_view as
+select distinct id,
+                order_id,
+                user_id,
+                sku_id,
+                province_id,
+                activity_id,
+                activity_rule_id,
+                coupon_id,
+                source_id,
+                source_type,
+                sku_num,
+                original_amount,
+                split_activity_amount,
+                split_coupon_amount,
+                split_total_amount,
+                create_time,
+                dt
+from dwd_order_detail
+where dt = current_date
+
