@@ -73,5 +73,6 @@ select distinct id,
                 create_time,
                 dt
 from dwd_order_detail
-where dt = current_date
+where dt = current_date;
+
 
