@@ -113,7 +113,7 @@ class MockDataApplicationTests {
     @Test
     public void generateJobJson() {
         List<String> tables = dataXMapper.showTables();
-        List<String> ignoreTables = Arrays.asList("base_dic", "base_frontend_param", "cms_banner", "seckill_goods", "financial_sku_cost", "spu_poster", "user_address", "ware_info");
+        List<String> ignoreTables = Arrays.asList("base_frontend_param", "cms_banner", "seckill_goods", "financial_sku_cost", "spu_poster", "user_address", "ware_info");
         tables.forEach(t -> {
             if (t.startsWith("t_")) return;
             if (t.startsWith("ads")) return;
@@ -146,6 +146,7 @@ class MockDataApplicationTests {
 
     private String getType(String type) {
         if (type.startsWith("int")) return "int";
+        if (type.startsWith("tinyint")) return "int";
         if (type.startsWith("bigint")) return "bigint";
         if (type.startsWith("varchar")) return "varchar";
         if (type.startsWith("date")) return "timestamp";
