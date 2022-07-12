@@ -23,7 +23,7 @@ class MockDataApplicationTests {
     void contextLoads() {
     }
 
-    private String mysql2hdfsJob = "{\n" +
+    private final String mysql2hdfsJob = "{\n" +
             "    \"job\":{\n" +
             "        \"setting\":{\n" +
             "            \"speed\":{\n" +
