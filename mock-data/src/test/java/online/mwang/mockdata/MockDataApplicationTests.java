@@ -133,7 +133,7 @@ class MockDataApplicationTests {
 //            System.out.println(writerParams);
             BufferedWriter bufferedWriter;
             try {
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(t + ".json")));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("job/"+t + ".json")));
                 System.out.println(JSONObject.toJSONString(jsonObject));
                 bufferedWriter.write(JSONObject.toJSONString(jsonObject));
                 bufferedWriter.flush();
