@@ -1,21 +1,22 @@
-package online.mwang.channel;
+package online.mwang.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.*;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-
-import java.nio.charset.StandardCharsets;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author mwangli
- * @date 2022/7/21 15:30
+ * @date 2022/7/27 9:42
  */
-public class HelloServer {
+@Slf4j
+public class EchoServer {
     public static void main(String[] args) {
         new ServerBootstrap()
                 .group(new NioEventLoopGroup())
@@ -23,17 +24,18 @@ public class HelloServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel channel) throws Exception {
-                        channel.pipeline().addLast(new StringEncoder());
                         channel.pipeline().addLast(new StringDecoder());
+                        channel.pipeline().addLast(new StringEncoder());
                         channel.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                                System.out.println(msg);
+                                log.debug("服务器收到数据{}", msg);
                                 ctx.channel().writeAndFlush(msg);
+//                                super.channelRead(ctx, msg);
                             }
                         });
                     }
                 })
-                .bind(8080);
+                .bind("localhost", 8080);
     }
 }
