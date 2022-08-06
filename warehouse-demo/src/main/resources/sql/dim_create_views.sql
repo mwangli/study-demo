@@ -23,7 +23,8 @@ order by id;
 
 
 select *
-from dim_user_info_view;
+from dim_user_info_view
+order by id;
 
 create or replace view dim_sku_info_view as
 select distinct id,
