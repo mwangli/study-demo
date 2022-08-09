@@ -24,7 +24,7 @@ public class QuickSort {
 
     /**
      * 先找到基准值，再按大小分成左右两边
-     * 递归处理，直至全列表有序
+     * 再递归处理左右两边，直至全列表有序
      * 80000随机数排序耗时：16ms
      */
     private static void sort(int[] arr, int left, int right) {
