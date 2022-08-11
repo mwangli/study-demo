@@ -33,7 +33,7 @@ public class MergeSort {
     }
 
     /**
-     * 递归二分法，再两两合并处理
+     * 递归二分法拆解成最小元素组，组内排序后再两两合并处理
      * 80000随机数排序耗时：12ms
      */
     private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
