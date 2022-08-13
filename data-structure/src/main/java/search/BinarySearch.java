@@ -16,10 +16,10 @@ public class BinarySearch {
             ints[i] = i + 1;
         }
         long start = new Date().getTime();
-        int index = search(ints, 80000, 0, ints.length - 1);
+        int index = search2(ints, 10000, 0, ints.length - 1);
         long end = new Date().getTime();
         System.out.println("耗时：" + (count));
-        System.out.println("结果：" + index);
+        System.out.println("结果：" + ints[index]);
     }
 
     private static int search(int[] arr, int value, int left, int right) {
@@ -35,5 +35,22 @@ public class BinarySearch {
         } else {
             return midIndex;
         }
+    }
+
+    private static int search2(int[] arr, int value, int left, int right) {
+        int l = left;
+        int r = right;
+        while (l < r) {
+            count++;
+            int mid = (l + r) / 2;
+            if (value == arr[mid]) {
+                return mid;
+            } else if (value > arr[mid]) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return -1;
     }
 }
