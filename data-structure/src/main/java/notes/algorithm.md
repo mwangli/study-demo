@@ -22,32 +22,25 @@
 ##### 经典排序算法
 
 1. 冒泡排序：每趟排序将两两相邻的位置比较并交换位置，直到将最大的数字交换到最后面
-2. 选择排序：每一趟排序从未排序的列表中选择出最小的数字，交换到最前面的位置
+2. 选择排序：每一趟排序从未排序的列表中选择出最小的数字，交换到最前面的位
 
-3. 插入排序：
-4. 希尔排序：
-5. 快速排序：
-6. 归并排序：
-7. 基数排序：
-8. 桶排序：
-
-##### 递归回溯
-
-- 迷宫问题
-- 八皇后问题
-
-##### KMP算法
-
-- 字符串子串问题
-
-##### 动态规划
-
-- 背包问题
-
-##### 普利姆算法
-
-- 修路问题
-
-##### 迪杰斯特拉算法
-
-- 最短路径问题
+```java
+        private static int[]sort(int[]arrays){
+        for(int i=0;i<arrays.length-1;i++){
+        int minIndex=i;
+        boolean f=false;
+        for(int j=i+1;j<arrays.length;j++){
+        if(arrays[j]<arrays[minIndex]){
+        minIndex=j;
+        f=true;
+        }
+        }
+        if(f){
+        int temp=arrays[i];
+        arrays[i]=arrays[minIndex];
+        arrays[minIndex]=temp;
+        }
+        }
+        return arrays;
+        }   
+```
