@@ -13,8 +13,7 @@ public class KmpSearch {
     }
 
     public static int kmp(String s1, String s2) {
-        int i = 0;
-        int j = 0;
+        int i = 0, j = 0;
         int[] next = getNext(s2);
         while (i < s1.length() && j < s2.length()) {
             if (j == -1 || s1.charAt(i) == s2.charAt(j)) {
@@ -39,10 +38,11 @@ public class KmpSearch {
         while (j < s2.length() - 1) {
             if (k == -1 || s2.charAt(j) == s2.charAt(k)) {
                 //当两个字符相同时，就跳过
-                if (s2.charAt(++j) == s2.charAt(++k))
+                if (s2.charAt(++j) == s2.charAt(++k)) {
                     next[j] = next[k];
-                else
+                } else {
                     next[j] = k;
+                }
             } else {
                 k = next[k];
             }
