@@ -37,7 +37,7 @@ public class KmpSearch {
         int k = -1;
         while (j < s2.length() - 1) {
             if (k == -1 || s2.charAt(j) == s2.charAt(k)) {
-                //当两个字符相同时，就跳过
+                // 当两个字符相同时，就跳过
                 if (s2.charAt(++j) == s2.charAt(++k)) {
                     next[j] = next[k];
                 } else {
