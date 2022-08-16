@@ -54,7 +54,7 @@ public class Floyd {
         show(pre, "pre_end");
     }
 
-    private static void show(int[][] arr, String key) {
+    public static void show(int[][] arr, String key) {
         System.out.println("-------------" + key + "-------------");
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
