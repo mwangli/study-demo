@@ -19,7 +19,7 @@ public class ChessBoard {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        int length = 5;
+        int length = 6;
         chess = new int[length][length];
         visited = new int[length][length];
         Point s = new Point(1, 1);
@@ -50,7 +50,7 @@ public class ChessBoard {
         if (step == chess.length * chess.length) {
             return true;
         }
-        // 如果没有完成任务，则重置棋盘和访问标记，进行回溯
+        // 如果没有完成任务，则取消当前位置，进行回溯
         chess[point.x][point.y] = 0;
         visited[point.x][point.y] = 0;
         count++;
