@@ -41,7 +41,9 @@ public class ChessBoard {
         while (!points.isEmpty()) {
             Point p = points.remove(0);
             if (chess[p.x][p.y] == 0) {
-                if (travelChess(chess, p, step + 1)) return true;
+                if (travelChess(chess, p, step + 1)) {
+                    return true;
+                }
             }
         }
         // 递归终止条件
