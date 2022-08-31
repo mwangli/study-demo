@@ -18,6 +18,7 @@ public class ArrayQueue {
     }
 
     public int add(int e){
+
         int index = rear % size;
         if (index==front){
             System.out.println("Full Queue");
@@ -28,3 +29,5 @@ public class ArrayQueue {
         return 1;
     }
 }
+
+
