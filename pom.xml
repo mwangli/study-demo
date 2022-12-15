@@ -13,6 +13,7 @@
         <module>mock-data</module>
         <module>warehouse-demo</module>
         <module>netty-demo</module>
+        <module>mqtt-demo</module>
     </modules>
 
     <properties>
