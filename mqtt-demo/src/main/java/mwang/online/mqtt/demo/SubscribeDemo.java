@@ -11,7 +11,7 @@ public class SubscribeDemo {
         String username = "emqx";
         String password = "public";
         String clientid = "subscribe_client";
-        int qos = 0;
+        int qos = 2;
 
         try {
             MqttClient client = new MqttClient(broker, clientid, new MemoryPersistence());
