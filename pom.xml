@@ -14,6 +14,7 @@
         <module>warehouse-demo</module>
         <module>netty-demo</module>
         <module>mqtt-demo</module>
+        <module>code-demo</module>
     </modules>
 
     <properties>
