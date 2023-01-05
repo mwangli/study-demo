@@ -1,20 +1,39 @@
 package mwang.online;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class AddTwoNumber {
 
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15};
         int target = 9;
-        int[] res = test1(nums, target);
+        int[] res = twoSum2(nums, target);
         System.out.println(Arrays.toString(res));
     }
 
 
-    public static int[] test1(int[] source, int target) {
-        int[] result = new int[2];
-        // TODO
-        return result;
+    public static int[] twoSum(int[] source, int target) {
+        for (int i = 0; i < source.length; i++) {
+            for (int j = 0; j < source.length; j++) {
+                if (i != j && source[i] + source[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return null;
+    }
+
+    public static int[] twoSum2(int[] source, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < source.length; i++) {
+            int j = target - source[i];
+            if (map.containsKey(j)) {
+                return new int[]{i, map.get(j)};
+            } else {
+                map.put(source[i],i);
+            }
+        }
+        return null;
     }
 }
