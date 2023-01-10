@@ -22,7 +22,7 @@ public class MaxLengthSubString {
                 maxLength = Math.max(maxLength, list.size());
                 // 出现重复则起始位置后移并重新判断
                 i--;
-            }else  {
+            } else {
                 list.add(c);
             }
         }
