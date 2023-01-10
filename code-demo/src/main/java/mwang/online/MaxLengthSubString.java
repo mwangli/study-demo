@@ -6,10 +6,8 @@ import java.util.HashSet;
 public class MaxLengthSubString {
 
     public static void main(String[] args) {
-
-        String str = "pwwkew";
+        String str = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(str));
-
     }
 
     public static int lengthOfLongestSubstring(String s) {
@@ -17,10 +15,10 @@ public class MaxLengthSubString {
         ArrayList<Character> list = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
             Character c = s.charAt(i);
+            // 出现重复则起始位置后移并重新判断
             if (list.contains(c)) {
-                list.remove(0);
                 maxLength = Math.max(maxLength, list.size());
-                // 出现重复则起始位置后移并重新判断
+                list.remove(0);
                 i--;
             } else {
                 list.add(c);
