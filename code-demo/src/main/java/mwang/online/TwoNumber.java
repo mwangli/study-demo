@@ -1,7 +1,9 @@
 package mwang.online;
 
-import java.util.Optional;
-
+/**
+ * 2. 两数相加 - middle
+ * https://leetcode.cn/problems/add-two-numbers/
+ */
 public class TwoNumber {
 
     public static void main(String[] args) {

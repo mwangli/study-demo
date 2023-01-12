@@ -1,9 +1,11 @@
 package mwang.online;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
+/**
+ * 4. 寻找两个正序数组的中位数 - hard
+ * https://leetcode.cn/problems/median-of-two-sorted-arrays/description/
+ */
 public class MedianStoredNumber {
 
     public static void main(String[] args) {

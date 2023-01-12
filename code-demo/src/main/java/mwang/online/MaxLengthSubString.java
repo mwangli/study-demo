@@ -1,8 +1,11 @@
 package mwang.online;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
+/**
+ * 3. 无重复字符的最长子串 - middle
+ * https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/
+ */
 public class MaxLengthSubString {
 
     public static void main(String[] args) {

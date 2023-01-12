@@ -1,5 +1,9 @@
 package mwang.online;
 
+/**
+ * 11. 盛最多水的容器 - middle
+ * https://leetcode.cn/problems/container-with-most-water/description/
+ */
 public class MaxAreaWater {
 
     public static void main(String[] args) {

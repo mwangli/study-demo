@@ -1,9 +1,13 @@
 package mwang.online;
 
+/**
+ * 7. 整数反转 - middle
+ * https://leetcode.cn/problems/reverse-integer/description/
+ */
 public class IntegerReverse {
 
     public static void main(String[] args) {
-        System.out.println(reverse(-2147483648));
+        System.out.println(reverse2(-2147483648));
     }
 
     public static int reverse(int x) {
