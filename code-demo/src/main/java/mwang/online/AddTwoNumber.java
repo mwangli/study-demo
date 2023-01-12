@@ -12,7 +12,6 @@ public class AddTwoNumber {
         System.out.println(Arrays.toString(res));
     }
 
-
     public static int[] twoSum(int[] source, int target) {
         for (int i = 0; i < source.length; i++) {
             for (int j = 0; j < source.length; j++) {
