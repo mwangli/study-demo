@@ -11,16 +11,16 @@ import java.util.Random;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] ints = new int[80000];
+        int[] ints = new int[10];
         int[] temp = new int[ints.length];
         for (int i = 0; i < ints.length; i++) {
-            ints[i] = new Random().nextInt(80000);
+            ints[i] = new Random().nextInt(10);
         }
         long start = new Date().getTime();
         sort(ints, 0, ints.length - 1, temp);
         long end = new Date().getTime();
         System.out.println("耗时：" + (end - start));
-//        System.out.println("结果：" + Arrays.toString(ints));
+        System.out.println("结果：" + Arrays.toString(ints));
     }
 
     private static void sort(int[] arr, int left, int right, int[] temp) {
