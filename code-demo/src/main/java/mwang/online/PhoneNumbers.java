@@ -3,7 +3,7 @@ package mwang.online;
 import java.util.*;
 
 /**
- * 17. 电话号码的字母组合 - middle
+ * 17. 电话号码的字母组合 - middle(递归回溯）
  * https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
  */
 public class PhoneNumbers {

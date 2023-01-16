@@ -8,7 +8,7 @@ import java.util.Stack;
  * 20. 有效的括号 - easy
  * https://leetcode.cn/problems/valid-parentheses/description/
  */
-public class bracketsValidate {
+public class BracketsValidate {
 
     public static void main(String[] args) {
         System.out.println(isValid("{[()]}"));
