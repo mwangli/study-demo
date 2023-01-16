@@ -1,5 +1,7 @@
 package mwang.online;
 
+import mwang.online.base.ListNode;
+
 /**
  * 2. 两数相加 - middle
  * https://leetcode.cn/problems/add-two-numbers/
@@ -7,17 +9,14 @@ package mwang.online;
 public class TwoNumber {
 
     public static void main(String[] args) {
-        new TwoNumber().test();
-    }
-
-    public void test() {
         ListNode l1 = new ListNode(0);
         ListNode l2 = new ListNode(0);
-        ListNode listNode = new TwoNumber().addTwoNumbers(l1, l2);
-        show(listNode);
+        ListNode listNode = addTwoNumbers(l1, l2);
+        ListNode.show(listNode);
     }
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int pre = 0;
         ListNode listNode = null;
         ListNode lastNode = null;
@@ -48,31 +47,6 @@ public class TwoNumber {
             l2 = l2.next;
         }
         return listNode;
-    }
-
-
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    public void show(ListNode listNode) {
-        while (listNode != null) {
-            System.out.println(listNode.val);
-            listNode = listNode.next;
-        }
     }
 }
 

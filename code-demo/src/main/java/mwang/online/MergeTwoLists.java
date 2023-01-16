@@ -1,33 +1,18 @@
 package mwang.online;
 
+import mwang.online.base.ListNode;
+
 /**
  * 21. 合并两个有序链表 - easy
  * https://leetcode.cn/problems/merge-two-sorted-lists/description/
  */
 public class MergeTwoLists {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     public static void main(String[] args) {
         ListNode list1 = new ListNode(1, new ListNode(3));
         ListNode list2 = new ListNode(2, new ListNode(4));
         ListNode listNode = mergeTwoLists2(list1, list2);
-        show(listNode);
+        ListNode.show(listNode);
     }
 
     public static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
@@ -68,13 +53,6 @@ public class MergeTwoLists {
             pre = pre.next;
         }
         return head.next;
-    }
-
-    public static void show(ListNode listNode) {
-        while (listNode != null) {
-            System.out.println(listNode.val);
-            listNode = listNode.next;
-        }
     }
 }
 

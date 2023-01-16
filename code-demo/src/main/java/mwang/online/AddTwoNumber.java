@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * 1. 两数之和 - easy
+ * 1. 两数之和 - e  asy
  * https://leetcode.cn/problems/two-sum/description/
  */
 public class AddTwoNumber {

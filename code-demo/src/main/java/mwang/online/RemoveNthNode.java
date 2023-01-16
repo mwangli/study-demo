@@ -1,32 +1,17 @@
 package mwang.online;
 
+import mwang.online.base.ListNode;
+
 /**
  * 19. 删除链表的倒数第 N 个结点 - middle
  * https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
  */
 public class RemoveNthNode {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     public static void main(String[] args) {
         ListNode listNode = new ListNode(1);
         ListNode node = removeNthFromEnd2(listNode, 1);
-        show(node);
+        ListNode.show(node);
     }
 
     /**
@@ -79,12 +64,5 @@ public class RemoveNthNode {
             head = head.next;
         }
         return length;
-    }
-
-    public static void show(ListNode listNode) {
-        while (listNode != null) {
-            System.out.println(listNode.val);
-            listNode = listNode.next;
-        }
     }
 }
