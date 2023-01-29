@@ -27,31 +27,26 @@ import java.util.Arrays;
 public class NextPermutation {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(nextPermutation(new int[]{1, 5, 8, 4, 7, 6,5,3,1})));
+        System.out.println(Arrays.toString(nextPermutation(new int[]{1, 2, 3})));
     }
 
     public static int[] nextPermutation(int[] nums) {
         // 先找到最小数a[i]
         int i = nums.length - 2;
-        while (i >= 0 && nums[i] < nums[i + 1]) {
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
-        i++;
-        // 找到较小数a[j]
-        int j = nums.length - 1;
-        while (j > i && nums[j] <= nums[i]) {
-            j--;
+        if (i >= 0) {
+            // 找到较小数a[j]
+            int j = nums.length - 1;
+            while (j >= 0 && nums[j] <= nums[i]) {
+                j--;
+            }
+            // 交换a[i]和a[j]
+            swap(nums, i, j);
         }
-        // 交换a[i]和a[j]
-        swap(nums, i, j);
         // 翻转[i+1,n)区间数据
-        int left = i + 1;
-        int right = nums.length - 1;
-        while (left < right) {
-            swap(nums, left, right);
-            left++;
-            right--;
-        }
+        reverse(nums, i + 1);
         return nums;
     }
 
@@ -59,5 +54,14 @@ public class NextPermutation {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+    }
+
+    public static void reverse(int[] nums, int start) {
+        int left = start, right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
     }
 }
