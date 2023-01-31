@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +9,7 @@ import java.util.List;
  * 15. 三数之和 - middle
  * https://leetcode.cn/problems/3sum/description/
  */
-public class AddThreeNumber {
+public class No15_AddThreeNumber {
     public static void main(String[] args) {
         System.out.println(threeSum2(new int[]{0, 0, 0, 0}));
     }

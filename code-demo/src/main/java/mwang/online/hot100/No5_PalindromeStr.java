@@ -1,10 +1,10 @@
-package mwang.online;
+package mwang.online.hot100;
 
 /**
  * 5. 最长回文子串 - middle
  * https://leetcode.cn/problems/longest-palindromic-substring/description/
  */
-public class PalindromeStr {
+public class No5_PalindromeStr {
 
     public static void main(String[] args) {
         System.out.println(longestPalindrome("cbba"));

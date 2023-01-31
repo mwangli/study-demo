@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import mwang.online.base.ListNode;
 
@@ -6,7 +6,7 @@ import mwang.online.base.ListNode;
  * 2. 两数相加 - middle
  * https://leetcode.cn/problems/add-two-numbers/
  */
-public class TwoNumber {
+public class No2_TwoNumber {
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(0);

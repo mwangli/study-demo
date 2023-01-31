@@ -1,19 +1,18 @@
-package mwang.online;
+package mwang.online.daily;
 
 import java.util.Stack;
 
 /**
  * 2315. 统计星号
  * 给你一个字符串 s ，每 两个 连续竖线 '|' 为 一对 。换言之，第一个和第二个 '|' 为一对，第三个和第四个 '|' 为一对，以此类推。
- * <p>
  * 请你返回 不在 竖线对之间，s 中 '*' 的数目。
- * <p>
  * 注意，每个竖线 '|' 都会 恰好 属于一个对。
+ * 思路：成对字符可使用栈结构
  */
-public class CountStar {
+public class No2315_CountStar {
 
     public static void main(String[] args) {
-        var count = new CountStar().countAsterisks("l|*e*et|c**o|*de|");
+        var count = new No2315_CountStar().countAsterisks("l|*e*et|c**o|*de|");
         System.out.println(count);
     }
 

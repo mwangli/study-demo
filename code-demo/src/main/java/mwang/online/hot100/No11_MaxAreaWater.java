@@ -1,10 +1,11 @@
-package mwang.online;
+package mwang.online.hot100;
 
 /**
  * 11. 盛最多水的容器 - middle
  * https://leetcode.cn/problems/container-with-most-water/description/
+ * 思路：缩减问题规模可使用递归
  */
-public class MaxAreaWater {
+public class No11_MaxAreaWater {
 
     public static void main(String[] args) {
         int[] heights = {1, 8, 100, 2, 100, 4, 8, 3, 7};

@@ -1,13 +1,13 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * 1. 两数之和 - e  asy
+ * 1. 两数之和 - easy
  * https://leetcode.cn/problems/two-sum/description/
  */
-public class AddTwoNumber {
+public class No1_AddTwoNumber {
 
     public static void main(String[] args) {
         int[] nums = new int[]{2, 7, 11, 15};

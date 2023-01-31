@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,9 @@ import java.util.List;
 /**
  * 22. 括号生成 - middle(递归回溯)
  * https://leetcode.cn/problems/generate-parentheses/description/
+ * 思路：设计到穷举，且有撤销动作可使用递归回溯
  */
-public class BracketsGenerate {
+public class No22_BracketsGenerate {
 
     public static void main(String[] args) {
         System.out.println(generateParenthesis(3));

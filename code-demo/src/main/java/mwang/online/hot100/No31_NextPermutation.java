@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ import java.util.Arrays;
  * 交换 a[i] 与 a[j]，此时可以证明区间 [i+1,n) 必为降序。
  * 我们可以直接使用双指针反转区间 [i+1,n) 使其变为升序，而无需对该区间进行排序。
  */
-public class NextPermutation {
+public class No31_NextPermutation {
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(nextPermutation(new int[]{1, 2, 3})));

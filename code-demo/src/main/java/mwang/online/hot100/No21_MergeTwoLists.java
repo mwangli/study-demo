@@ -1,12 +1,14 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import mwang.online.base.ListNode;
 
 /**
  * 21. 合并两个有序链表 - easy
  * https://leetcode.cn/problems/merge-two-sorted-lists/description/
+ * 思路：从两个链表头节点取较小值以此加入新链表
+ * 涉及链表可尝试使用递归
  */
-public class MergeTwoLists {
+public class No21_MergeTwoLists {
 
     public static void main(String[] args) {
         ListNode list1 = new ListNode(1, new ListNode(3));

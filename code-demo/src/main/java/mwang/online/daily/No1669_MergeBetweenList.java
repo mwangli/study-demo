@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.daily;
 
 import mwang.online.base.ListNode;
 
@@ -6,7 +6,7 @@ import mwang.online.base.ListNode;
  * 1669. 合并两个链表
  * https://leetcode.cn/problems/merge-in-between-linked-lists/description/
  */
-public class MergeBetweenList {
+public class No1669_MergeBetweenList {
 
     public static void main(String[] args) {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));

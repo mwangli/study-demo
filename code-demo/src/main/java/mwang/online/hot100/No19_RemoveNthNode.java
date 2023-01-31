@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import mwang.online.base.ListNode;
 
@@ -6,7 +6,7 @@ import mwang.online.base.ListNode;
  * 19. 删除链表的倒数第 N 个结点 - middle
  * https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
  */
-public class RemoveNthNode {
+public class No19_RemoveNthNode {
 
     public static void main(String[] args) {
         ListNode listNode = new ListNode(1);

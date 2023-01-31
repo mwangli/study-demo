@@ -1,4 +1,4 @@
-package mwang.online;
+package mwang.online.hot100;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ import java.util.*;
  * 17. 电话号码的字母组合 - middle(递归回溯）
  * https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
  */
-public class PhoneNumbers {
+public class No17_PhoneNumbers {
 
     public static final HashMap<String, List<String>> stringMap = new HashMap<>();
 

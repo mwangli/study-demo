@@ -1,10 +1,11 @@
-package mwang.online;
+package mwang.online.hot100;
 
 /**
  * 7. 整数反转 - middle
  * https://leetcode.cn/problems/reverse-integer/description/
+ * 思路：除10取余截取低位，再乘10加余数推上高位
  */
-public class IntegerReverse {
+public class No7_IntegerReverse {
 
     public static void main(String[] args) {
         System.out.println(reverse2(-2147483648));
