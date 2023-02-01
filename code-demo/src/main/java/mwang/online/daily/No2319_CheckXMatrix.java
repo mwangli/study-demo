@@ -13,7 +13,18 @@ public class No2319_CheckXMatrix {
     }
 
     public static boolean checkXMatrix(int[][] grid) {
-
-        return false;
+        int n = grid.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+//                System.out.println(grid[i][j]);
+                // 如果是对角线元素,则不能为0；如果是非对角线元素则必须为0
+                if (i == j || i + j == n - 1) {
+                    if (grid[i][j] == 0) return false;
+                } else {
+                    if (grid[i][j] != 0) return false;
+                }
+            }
+        }
+        return true;
     }
 }
