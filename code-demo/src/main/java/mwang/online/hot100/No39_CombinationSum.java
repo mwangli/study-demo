@@ -1,6 +1,7 @@
 package mwang.online.hot100;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,18 +18,22 @@ public class No39_CombinationSum {
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         ArrayList<List<Integer>> ans = new ArrayList<>();
         ArrayList<Integer> res = new ArrayList<>();
+        // 排序后方便剪枝
+        Arrays.sort(candidates);
         dfs(candidates, target, 0, 0, ans, res);
         return ans;
     }
 
     public static void dfs(int[] candidates, int target, int sum, int index, List<List<Integer>> ans, List<Integer> path) {
-        if (sum >= target) {
-            if (sum == target) ans.add(new ArrayList<>(path));
+        if (sum == target) {
+            ans.add(new ArrayList<>(path));
             return;
         }
         for (int i = index; i < candidates.length; i++) {
             int candidate = candidates[i];
             sum += candidate;
+            // 因为有序，后面的数比当前值更大直接排除剪枝
+            if (sum > target) break;
             path.add(candidate);
             // 可选范围缩小确保不重复
             dfs(candidates, target, sum, i, ans, path);
