@@ -17,21 +17,28 @@ public class No34_SearchRange {
     }
 
     public static int[] searchRange(int[] nums, int target) {
-        int[] ans = new int[]{-1, -1};
+        int leftIdx = binarySearch(nums, target, true);
+        int rightIdx = binarySearch(nums, target, false) - 1;
+        if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] == target && nums[rightIdx] == target) {
+            return new int[]{leftIdx, rightIdx};
+        }
+        return new int[]{-1, -1};
+    }
+
+
+    public static int binarySearch(int[] nums, int target, boolean flag) {
         int left = 0;
         int right = nums.length - 1;
+        int ans = nums.length;
         while (left <= right) {
-            int mid = (left + right) / 2;
-            if (target < nums[mid]) {
-                right = mid+1;
-            } else if (target > nums[mid]) {
-                left = mid - 1;
+            int midIndex = (left + right) / 2;
+            if (target < nums[midIndex] || (flag && target <= nums[midIndex])) {
+                right = midIndex - 1;
+                ans = midIndex;
             } else {
-                System.out.println(nums[mid]);
-                break;
+                left = midIndex + 1;
             }
         }
         return ans;
     }
-
 }

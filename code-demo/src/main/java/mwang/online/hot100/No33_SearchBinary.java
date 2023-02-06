@@ -37,7 +37,7 @@ public class No33_SearchBinary {
         if (left > right) return -1;
         int mid = (left + right) / 2;
         if (target < nums[mid]) {
-            return binarySearch(nums, left, mid, target);
+            return binarySearch(nums, left, mid - 1, target);
         } else if (target > nums[mid]) {
             return binarySearch(nums, mid + 1, right, target);
         } else {
@@ -51,7 +51,7 @@ public class No33_SearchBinary {
         while (l < r) {
             int mid = (l + r) / 2;
             if (target < nums[mid]) {
-                r = mid;
+                r = mid - 1;
             } else if (target > nums[mid]) {
                 l = mid + 1;
             } else {
