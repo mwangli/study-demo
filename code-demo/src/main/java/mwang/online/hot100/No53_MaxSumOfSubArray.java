@@ -8,7 +8,17 @@ public class No53_MaxSumOfSubArray {
 
     public static void main(String[] args) {
         int[] ints = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(maxSubArray(ints));
+        System.out.println(maxSubArray2(ints));
+    }
+
+    public static int maxSubArray2(int[] nums) {
+        int pre = 0;
+        int maxValue = nums[0];
+        for (var num : nums) {
+            pre = Math.max(pre + num, num);
+            maxValue = Math.max(maxValue, pre);
+        }
+        return maxValue;
     }
 
     public static int maxSubArray(int[] nums) {
