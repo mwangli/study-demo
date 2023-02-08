@@ -7,6 +7,7 @@ package mwang.online.hot100;
  * 思路：1.使用另外一个矩阵来暂存
  * 2.先水平翻转再对角线交换 matrix[row][col] =>(水平轴翻转，列不变，行交换) matrix[n-row-1][col]
  * matrix[n-row-1][col]  => 对角线翻转(行转列，列转行) => matrix_new[col][n−row−1]
+ * 扩展：任意角度的旋转都可以由翻转(水平或者垂直)加对角线交换得到
  */
 public class No48_RotateMatrix {
 
