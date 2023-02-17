@@ -32,8 +32,6 @@ public class No75_SortColors {
     public static void sortColors2(int[] nums) {
         // 代表数组0的长度
         int left = 0;
-        int p0 = 0;
-        int p1 = 0;
         // 表数据2的长度
         int right = nums.length - 1;
         for (int i = 0; i <= right; i++) {
@@ -43,7 +41,7 @@ public class No75_SortColors {
                 swap(nums, i, right--);
             }
             if (nums[i] == 0)
-                swap(nums, i, p1++);
+                swap(nums, i, left++);
         }
     }
 
