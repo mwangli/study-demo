@@ -52,7 +52,7 @@ public class No79_WordSearch {
                 // 如果上下左右都不匹配后续位置，则撤销当前位置
                 map[i][j] = 0;
             } else {
-                 return true;
+                return true;
             }
         }
         return false;
