@@ -36,6 +36,7 @@ public class No94_TreeSearch {
         TreeNode cur = root;
         Stack<TreeNode> stack = new Stack<>();
         while (cur != null || !stack.isEmpty()) {
+            // 先找到最左节点
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
