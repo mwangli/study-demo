@@ -18,6 +18,7 @@ public class No98_TreeSortCheck {
 //        final TreeNode root = new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6)));
         final TreeNode root = new TreeNode(0, new TreeNode(0), new TreeNode(0));
         System.out.println(isValidBST(root));
+        System.out.println(isValidBST2(root,Long.MIN_VALUE,Long.MAX_VALUE));
     }
 
     public static boolean isValidBST(TreeNode root) {
@@ -36,5 +37,15 @@ public class No98_TreeSortCheck {
             root = root.right;
         }
         return true;
+    }
+
+    public static boolean isValidBST2(TreeNode root, long left, long right) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val <= left || root.val >= right) {
+            return false;
+        }
+        return isValidBST2(root.left, left, root.val) && isValidBST2(root.right, root.val, right);
     }
 }
