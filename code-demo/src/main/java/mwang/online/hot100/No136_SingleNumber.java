@@ -5,12 +5,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 136. 只出现一次的数字
+ * 位运算， 异或 ， a ^ a = 0(消消乐) a ^ 0 = a
  */
 public class No136_SingleNumber {
 
     public static void main(String[] args) {
-        final int[] ints = {1, 2, 4, 2, 3, 4};
-        System.out.println(singleNumber(ints));
+        final int[] ints = {1, 2, 2};
+        System.out.println(singleNumber2(ints));
     }
 
     public static int singleNumber(int[] nums) {
@@ -27,9 +28,10 @@ public class No136_SingleNumber {
     }
 
     public static int singleNumber2(int[] nums) {
-
+        int res = 0;
         for (int num : nums) {
+            res = res ^ num;
         }
-        return 0;
+        return res;
     }
 }
