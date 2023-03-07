@@ -34,10 +34,10 @@ public class No142_DetectedCycleList {
     }
 
     public static ListNode detectedCycle2(ListNode head) {
-
+        if (head == null) return null;
         ListNode fast = head;
         ListNode slow = head;
-        while (true) {
+        while (fast != null) {
             slow = slow.next;
             if (fast.next != null) {
                 fast = fast.next.next;
@@ -53,5 +53,6 @@ public class No142_DetectedCycleList {
                 return pre;
             }
         }
+        return null;
     }
 }
