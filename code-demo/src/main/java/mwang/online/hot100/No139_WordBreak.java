@@ -10,7 +10,7 @@ import java.util.List;
  * @description: No139_WordBreak
  * 139. 单词拆分
  * 思路：动态规划
- * dp[i] = dp[j] && contains(s[j,i-1])
+ * dp[i] = dp[j] && contains(s[j,i])
  */
 public class No139_WordBreak {
 
