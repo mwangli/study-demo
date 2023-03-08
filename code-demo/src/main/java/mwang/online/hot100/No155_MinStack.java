@@ -33,11 +33,10 @@ public class No155_MinStack {
             min = val;
             stack.push(0L);
         } else {
-            // 栈不为空时，每次压入计算与min的差值后压入结果
+            // 压入当前值和上一个最小值的差
             stack.push((long) val - min);
-            // 更新min
+            // 更新当前的最小值
             min = Math.min(val, min);
-            // 上面两个语句是不能颠倒的！一定是先压入，在更新，因为min一定是当前栈中的最小值
         }
 
     }
@@ -46,20 +45,20 @@ public class No155_MinStack {
         var pop = stack.pop();
         // 当弹出元素小于0时，说明弹出元素是当前栈中的最小值，要更新最小值
         if (pop < 0) {
-            // 因为对于当前弹出的元素而言，计算压入栈中的值时，计算的是该元素与【未压入】该元素时
-            // 栈中元素的最小值的差值，故弹出该元素后栈中的最小值就是未压入该元素时的最小值
-            // 即当前元素的值（min）减去两者的差值
-            var lastMin = min;
-            min = (lastMin - pop);
+            // min代表当前值 val - (val - lasMin) = lasMin
+            var val = min;
+            var lastMin = val- pop;
+            min = lastMin;
         }
-        // 若大于等于0，不会对min有影响
+        // 说明当前值不是最小值
     }
 
     public int top() {
         long peek = stack.peek();
-        // 若当前栈顶小于等于0，说明最小值就是栈顶元素
+        // 若当前栈顶小于等于0，说明当前值就是最小值，而当前值存在min中
         if (peek <= 0) return (int) min;
-        // 否则就是min+peek
+        // 否则说明当前元素不是最小值，min代表上一个最小值
+        // lastMin + (val - lastMin) = val
         return (int) (min + peek);
     }
 
