@@ -15,6 +15,7 @@
         <module>netty-demo</module>
         <module>mqtt-demo</module>
         <module>code-demo</module>
+        <module>redis-demo</module>
     </modules>
 
     <properties>
