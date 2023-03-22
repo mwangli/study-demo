@@ -19,6 +19,6 @@ public class RedisDemoController {
 
     @RequestMapping("/test")
     public String test() {
-        return "v1.0 : 当前访问人数" + redisTemplate.opsForValue().increment("count");
+        return "v2.4: 当前访问人数" + redisTemplate.opsForValue().increment("count");
     }
 }
