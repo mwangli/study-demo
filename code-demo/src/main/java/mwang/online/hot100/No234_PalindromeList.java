@@ -25,7 +25,6 @@ public class No234_PalindromeList {
             stack.push(p1);
             p1 = p1.next;
             p2 = p2.next;
-
             if (p2 == null) {
                 flag = true;
             } else {

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class WaitNotify {
     static boolean flag = true;
-    static Object lock = new Object();
+    static final Object lock = new Object();
 
     public static void main(String[] args) throws Exception {
         Thread waitThread = new Thread(new Wait(), "WaitThread");
