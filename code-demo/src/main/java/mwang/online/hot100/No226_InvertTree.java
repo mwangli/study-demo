@@ -2,6 +2,9 @@ package mwang.online.hot100;
 
 import mwang.online.base.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @version 1.0.0
  * @author: mwangli
@@ -12,7 +15,7 @@ public class No226_InvertTree {
 
     public static void main(String[] args) {
         final TreeNode root = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-        final TreeNode tree = invertTree(root);
+        final TreeNode tree = invertTree2(root);
         System.out.println(tree);
     }
 
@@ -22,6 +25,20 @@ public class No226_InvertTree {
         TreeNode temp = invertTree(root.left);
         root.left = invertTree(root.right);
         root.right = temp;
+        return root;
+    }
+
+    public static TreeNode invertTree2(TreeNode root) {
+        final Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            final TreeNode node = queue.poll();
+            final TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+            if (node.left != null) queue.offer(node.left);
+            if (node.right != null) queue.offer(node.right);
+        }
         return root;
     }
 }
