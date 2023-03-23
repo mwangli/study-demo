@@ -1,4 +1,4 @@
-package mwang.online.multiThread;
+package mwang.online.thread;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +20,7 @@ public class Interrupted {
         sleepThread.start();
         busyThread.start();
         // 休眠5秒，让sleepThread和busyThread充分运行
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
         sleepThread.interrupt();
         busyThread.interrupt();
         System.out.println("SleepThread interrupted is " + sleepThread.isInterrupted());

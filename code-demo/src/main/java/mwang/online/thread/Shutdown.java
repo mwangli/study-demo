@@ -1,4 +1,4 @@
-package mwang.online.multiThread;
+package mwang.online.thread;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,6 +15,7 @@ public class Shutdown {
         countThread.start();
         // 睡眠1秒，main线程对CountThread进行中断，使CountThread能够感知中断而结束
         TimeUnit.SECONDS.sleep(1);
+        countThread.interrupt();
         countThread.interrupt();
         one.cancel();
 

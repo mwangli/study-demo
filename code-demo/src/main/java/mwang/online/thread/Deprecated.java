@@ -1,4 +1,4 @@
-package mwang.online.multiThread;
+package mwang.online.thread;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,8 +24,8 @@ public class Deprecated {
         System.out.println("main suspend PrintThread at " + format.format(new Date()));
         TimeUnit.SECONDS.sleep(3);
         // 将PrintThread进行恢复，输出内容继续
-        printThread.resume();
         System.out.println("main resume PrintThread at " + format.format(new Date()));
+        printThread.resume();
         TimeUnit.SECONDS.sleep(3);
         // 将PrintThread进行终止，输出内容停止
         printThread.stop();

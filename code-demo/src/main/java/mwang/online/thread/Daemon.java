@@ -1,4 +1,4 @@
-package mwang.online.multiThread;
+package mwang.online.thread;
 
 /**
  * @version 1.0.0

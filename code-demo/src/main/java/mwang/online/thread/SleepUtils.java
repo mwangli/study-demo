@@ -1,4 +1,4 @@
-package mwang.online.multiThread;
+package mwang.online.thread;
 
 import java.util.concurrent.TimeUnit;
 
