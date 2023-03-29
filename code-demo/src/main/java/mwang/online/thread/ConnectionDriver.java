@@ -27,4 +27,13 @@ public class ConnectionDriver {
         return (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(),
                 new Class<?>[]{Connection.class}, new ConnectionHandler());
     }
+
+    public static void main(String[] args) {
+        int capacity = 5;
+        int segment = 3;
+        int c = capacity / segment;
+        if (c * segment < capacity)
+            c++;
+        System.out.println(c * segment);
+    }
 }
