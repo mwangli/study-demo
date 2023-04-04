@@ -1,8 +1,6 @@
 package mwang.online.thread;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @version 1.0.0
@@ -14,13 +12,17 @@ public class TreadPoolTest {
 
     public static void main(String[] args) {
 
+        final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+        final ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+        final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+
         final ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 3,
                 TimeUnit.SECONDS, new ArrayBlockingQueue<>(5));
         for (int i = 1; i <= 15; i++) {
             int finalI = i;
             executor.execute(() -> {
                 SleepUtils.second(3);
-                System.out.println(Thread.currentThread().getName() +"_task_" + finalI + " finished");
+                System.out.println(Thread.currentThread().getName() + "_task_" + finalI + " finished");
             });
             printSize(executor);
         }
@@ -31,7 +33,7 @@ public class TreadPoolTest {
             int finalI = i;
             executor.execute(() -> {
                 SleepUtils.second(3);
-                System.out.println(Thread.currentThread().getName() +"_task_" + finalI + " finished");
+                System.out.println(Thread.currentThread().getName() + "_task_" + finalI + " finished");
             });
             printSize(executor);
         }
