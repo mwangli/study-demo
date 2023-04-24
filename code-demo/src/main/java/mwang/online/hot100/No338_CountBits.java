@@ -11,6 +11,7 @@ import java.util.Arrays;
  * 1. bitCount内置函数
  * 2. 按位与计算
  * 3. 动态规划 f(i) = f(i-j) + 1; j<i, j是i的最高有效位
+ * 4. 动态规划，最低有效位
  */
 public class No338_CountBits {
 
@@ -49,6 +50,24 @@ public class No338_CountBits {
             System.out.println(highBit);
             res[i] = res[i - highBit] + 1;
 
+        }
+        return res;
+    }
+
+    public static int[] countBits4(int n) {
+        final int[] res = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            // i >> 1 去掉最低位  i&1 获取最低位的1
+            res[i] = res[i >> 1] + (i & 1);
+        }
+        return res;
+    }
+
+    public static int[] countBits5(int n) {
+        final int[] res = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            // i & (i - 1) 将末位的1转成0
+            res[i] = res[i & (i - 1)] + 1;
         }
         return res;
     }
