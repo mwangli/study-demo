@@ -13,9 +13,9 @@ package mwang.online.hot100;
  */
 public class No279_NumSquares {
 
-    private static int MAX = 10000;
-    private static int[] dp = new int[MAX + 1];
-    private static int[] squares = new int[MAX + 1];
+    private static final int MAX = 10000;
+    private static final int[] dp = new int[MAX + 1];
+    private static final int[] squares = new int[MAX + 1];
 
     static {
         for (int i = 1; i <= MAX; i++) {

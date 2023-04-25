@@ -12,7 +12,7 @@ import java.util.Stack;
 public class No98_TreeSortCheck {
 
 
-    private static boolean flag = true;
+    private static final boolean flag = true;
 
     public static void main(String[] args) {
 //        final TreeNode root = new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6)));
