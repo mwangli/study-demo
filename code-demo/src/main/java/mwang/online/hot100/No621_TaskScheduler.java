@@ -2,12 +2,15 @@ package mwang.online.hot100;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @version 1.0.0
  * @author: mwangli
  * @date: 2023/5/8 10:42
  * @description: No621_TaskScheduler
+ * 思路：填表法；
+ * res =  (max-1)*(n+1)+maxCount or task.size
  */
 public class No621_TaskScheduler {
 
@@ -17,6 +20,26 @@ public class No621_TaskScheduler {
     }
 
     public static int leastInterval(char[] tasks, int n) {
+        // 统计每个任务出现的次数
+        final HashMap<Character, Integer> map = new HashMap<>();
+        for (char task : tasks)
+            map.put(task, map.getOrDefault(task, 0) + 1);
+        // 找到出现任务出现最多的次数和任务个数
+        AtomicInteger max = new AtomicInteger();
+        AtomicInteger maxCount = new AtomicInteger();
+        map.forEach((k, v) -> {
+            if (v > max.get()) {
+                maxCount.set(1);
+                max.set(v);
+            }
+            if (v == max.get()) {
+                maxCount.getAndIncrement();
+            }
+        });
+        return Math.max(tasks.length, (max.get() - 1) * (n + 1) + maxCount.get() - 1);
+    }
+
+    public static int leastInterval2(char[] tasks, int n) {
         // 统计每个任务出现的次数
         final HashMap<Character, Integer> map = new HashMap<>();
         for (char task : tasks)
@@ -54,6 +77,6 @@ public class No621_TaskScheduler {
             nextTime.set(maxIndex, time + n + 1);
             time++;
         }
-        return time-1;
+        return time - 1;
     }
 }
