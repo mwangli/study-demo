@@ -3,6 +3,7 @@ package mwang.online.hot100;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @version 1.0.0
@@ -15,7 +16,8 @@ public class No301_RemovePattern {
 
     public static void main(String[] args) {
         System.out.println(removeInvalidParentheses("()())()"));
-        System.out.println(removeInvalidParentheses2(")("));
+        System.out.println(removeInvalidParentheses2("((()p"));
+        System.out.println(removeInvalidParentheses3("((()p"));
     }
 
     public static List<String> removeInvalidParentheses2(String s) {
@@ -69,14 +71,63 @@ public class No301_RemovePattern {
             final HashSet<String> nextSet = new HashSet<>();
             for (String s : curSet) {
                 for (int i = 0; i < s.length(); i++) {
-                    if (i != 0 && str.charAt(i) == str.charAt(i - 1)) continue;
-                    if (')' == str.charAt(i) || '(' == str.charAt(i))
-                        nextSet.add(str.substring(0, i) + str.substring(i + 1));
+                    if (i != 0 && s.charAt(i) == s.charAt(i - 1)) continue;
+                    if (s.charAt(i) == '(' || s.charAt(i) == ')') {
+                        nextSet.add(s.substring(0, i) + s.substring(i + 1));
+                    }
                 }
             }
             curSet = nextSet;
         }
     }
+
+    public static List<String> removeInvalidParentheses3(String s) {
+        List<String> ans = new ArrayList<String>();
+        Set<String> currSet = new HashSet<String>();
+
+        currSet.add(s);
+        while (true) {
+            for (String str : currSet) {
+                if (isValid(str)) {
+                    ans.add(str);
+                }
+            }
+            if (ans.size() > 0) {
+                return ans;
+            }
+            Set<String> nextSet = new HashSet<String>();
+            for (String str : currSet) {
+                for (int i = 0; i < str.length(); i ++) {
+                    if (i > 0 && str.charAt(i) == str.charAt(i - 1)) {
+                        continue;
+                    }
+                    if (str.charAt(i) == '(' || str.charAt(i) == ')') {
+                        nextSet.add(str.substring(0, i) + str.substring(i + 1));
+                    }
+                }
+            }
+            currSet = nextSet;
+        }
+    }
+
+    private static boolean isValid(String str) {
+        char[] ss = str.toCharArray();
+        int count = 0;
+
+        for (char c : ss) {
+            if (c == '(') {
+                count++;
+            } else if (c == ')') {
+                count--;
+                if (count < 0) {
+                    return false;
+                }
+            }
+        }
+
+        return count == 0;
+    }
+
 
     private static boolean check(String str) {
         int count = 0;
