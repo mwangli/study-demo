@@ -63,7 +63,6 @@ public class No84_MaxRectArea {
             stack.push(i);
         }
         System.out.println(Arrays.toString(left));
-
         System.out.println(Arrays.toString(right));
         int maxArea = 0;
         for (int i = 0; i < heights.length; i++) {
