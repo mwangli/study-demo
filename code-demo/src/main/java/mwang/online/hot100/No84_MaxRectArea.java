@@ -12,7 +12,7 @@ import java.util.Stack;
 public class No84_MaxRectArea {
 
     public static void main(String[] args) {
-        final int[] ints = {2, 1, 5, 6, 2, 3};
+        final int[] ints = {1, 3, 3, 0};
         System.out.println(largestRectangleArea(ints));
         System.out.println(largestRectangleArea2(ints));
         System.out.println(largestRectangleArea3(ints));
