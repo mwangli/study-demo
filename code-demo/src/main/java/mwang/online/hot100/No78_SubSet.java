@@ -9,7 +9,7 @@ import java.util.List;
  * 思路：递归回溯，对于每个元素，只有在子集中或者不在子集中两种状态，递归穷举即可
  * 时间复杂度 O(2^n)
  */
-public class No76_SubSet {
+public class No78_SubSet {
 
     public static void main(String[] args) {
         int[] ints = {1, 2, 3, 4};
