@@ -1,4 +1,4 @@
-package mwang.online.top200;
+package mwang.online.thread;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
