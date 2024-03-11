@@ -1,4 +1,4 @@
-package mwang.online.top200;
+package mwang.online.classic200;
 
 import java.util.ArrayList;
 import java.util.List;

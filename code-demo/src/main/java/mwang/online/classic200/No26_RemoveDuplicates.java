@@ -1,4 +1,4 @@
-package mwang.online.top200;
+package mwang.online.classic200;
 
 import java.util.Arrays;
 
@@ -19,9 +19,11 @@ public class No26_RemoveDuplicates {
 
 
     // 要求保留顺序,将不重复的数值移动到左边
-    // (left,right]为重复数值
+    //
     public int removeDuplicates(int[] nums) {
+        // 有效数组的长度
         int left = 0;
+        // 已处理数组的长度
         int right = 1;
         while (right < nums.length) {
             if (nums[left] != nums[right]) {
