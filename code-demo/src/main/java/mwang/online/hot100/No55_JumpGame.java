@@ -24,6 +24,7 @@ public class No55_JumpGame {
     }
 
 
+    // 贪心算法
     public boolean canJump(int[] nums) {
 //        dfs(nums, 0);
         var maxIndex = 0;
