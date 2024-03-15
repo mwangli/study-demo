@@ -66,8 +66,8 @@ public class No274_HIndex {
         // 从大到小，依次穷举
         while (maxValue > 0) {
             int count = 0;
-            for (int i = 0; i < citations.length; i++) {
-                if (citations[i] >= maxValue) {
+            for (int citation : citations) {
+                if (citation >= maxValue) {
                     count++;
                 }
                 if (count >= maxValue)
