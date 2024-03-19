@@ -40,7 +40,7 @@ public class No151_ReverseWords {
         return join;
     }
 
-    // whole reverse and single word reverse
+    // whole reverse and then single word reverse
     public String reverseWords(String s) {
         // step1: reverse all string
         final String reversedStr = new StringBuilder(s.trim()).reverse().toString();
@@ -50,7 +50,7 @@ public class No151_ReverseWords {
         for (int i = 0; i < reversedStr.length(); i++) {
             final char c = reversedStr.charAt(i);
             if (c == ' ') {
-                // prevent write space
+                // prevent to write too many space
                 if (temp.length() > 0) {
                     res.append(temp.reverse()).append(' ');
                     temp.delete(0, temp.length());
