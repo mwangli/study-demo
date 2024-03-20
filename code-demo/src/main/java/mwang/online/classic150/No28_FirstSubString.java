@@ -26,7 +26,7 @@ public class No28_FirstSubString {
 
     // O(m*n) O(1)
     public int strStr(String haystack, String needle) {
-        // [left,right] is reference to matches characters in haystack.
+        // [left,right) is reference to matches characters in haystack.
         int left = 0, right = 0;
         // index is reference to char index in needle.
         int index = 0;
