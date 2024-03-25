@@ -69,11 +69,11 @@ public class No167_TwoSumII {
         int left = 0, right = numbers.length - 1;
         while (left < right) {
             final int current = numbers[left] + numbers[right];
-            // if current sum is bigger than target, need a smaller total
+            // if current sum is bigger than target, need a smaller total sum
             if (current > target) {
                 right--;
             }
-            // if current sum is smaller than target, need a bigger total
+            // if current sum is smaller than target, need a bigger total sum
             else if (current < target) {
                 left++;
             } else {
