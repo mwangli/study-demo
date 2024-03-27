@@ -1,5 +1,6 @@
 package mwang.online.classic150;
 
+import lombok.var;
 import org.junit.Test;
 
 import java.util.HashSet;
