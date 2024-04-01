@@ -13,6 +13,7 @@
         <module>structure-demo</module>
         <module>mqtt-demo</module>
         <module>netty-demo</module>
+        <module>jsoup-demo</module>
         <module>redis-demo</module>
     </modules>
 
