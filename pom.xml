@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>code-demo</module>
-        <module>structure-demo</module>
+        <module>data-demo</module>
         <module>mqtt-demo</module>
         <module>netty-demo</module>
         <module>jsoup-demo</module>
