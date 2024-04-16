@@ -31,7 +31,7 @@ public class No383_RansomNote {
         Assert.assertTrue(canConstruct(a3, b3));
     }
 
-
+    // O(m+n) + O(26)
     public boolean canConstruct(String ransomNote, String magazine) {
         // use map to do wordcount
         final HashMap<Character, Integer> map1 = wordCount(ransomNote);
