@@ -22,9 +22,9 @@ public class No290_WordPattern {
 
 
     public boolean wordPattern(String pattern, String s) {
-        final HashMap<Character, String> map1 = new HashMap<>(16);
-        final HashMap<String, Character> map2 = new HashMap<>(16);
-        final String[] split = s.split(" ");
+        HashMap<Object, Object> map1 = new HashMap<>(16);
+        HashMap<String, Character> map2 = new HashMap<>(16);
+        String[] split = s.split(" ");
         if (pattern.length() != split.length) return false;
         for (int i = 0; i < pattern.length(); i++) {
             final char c = pattern.charAt(i);
