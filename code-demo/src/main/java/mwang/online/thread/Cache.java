@@ -15,7 +15,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @description: Cache
  */
 public class Cache {
-    static Map<String, Object> map = new HashMap<String, Object>();
+    static Map<String, Object> map = new HashMap<>();
     static ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
     static Lock r = rwl.readLock();
     static Lock w = rwl.writeLock();

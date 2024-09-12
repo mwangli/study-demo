@@ -6,7 +6,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class SubscribeDemo {
 
     public static void main(String[] args) {
-        String broker = "tcp://mwang.online:1883";
+        String broker = "tcp://test:1883";
         String topic = "testtopic";
         String username = "emqx";
         String password = "public";

@@ -13,6 +13,10 @@ public class No2_TwoNumber {
         ListNode l2 = new ListNode(0);
         ListNode listNode = addTwoNumbers(l1, l2);
         ListNode.show(listNode);
+
+        System.out.println((int)'A');
+        System.out.println((int)'a');
+        System.out.println((int)'0');
     }
 
 

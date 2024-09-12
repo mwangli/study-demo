@@ -6,7 +6,7 @@ import java.util.*;
  * @version 1.0.0
  * @author: mwangli
  * @date: 2023/5/10 10:13
- * @description: No207_FindfCourse
+ * @description: No207_FindCourse
  */
 public class No207_FindCourse {
 
@@ -30,7 +30,7 @@ public class No207_FindCourse {
             //  a -> b
             final int a = prerequisite[0];
             final int b = prerequisite[1];
-            // 表示课程b的前置课程增加1
+            // 表示课程b的前置课程增加1+
             indeg.set(b, indeg.get(b) + 1);
             // 表示通过课程a可以学习课程b
             edge.get(a).add(b);

@@ -34,6 +34,7 @@ public class Interrupted {
         public void run() {
             while (true) {
                 SleepUtils.second(10);
+                System.out.println("r1");
             }
         }
     }
@@ -42,6 +43,7 @@ public class Interrupted {
         @Override
         public void run() {
             while (true) {
+                System.out.println("r2");
             }
         }
     }
